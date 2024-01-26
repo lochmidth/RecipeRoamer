@@ -11,6 +11,10 @@ protocol MealListViewInput: AnyObject {
     
 }
 
+protocol MealListViewOutput: AnyObject {
+    
+}
+
 final class MealListViewController: UIViewController {
     //MARK: - Properties
     
@@ -36,7 +40,7 @@ final class MealListViewController: UIViewController {
     }
 }
 
-extension MealListViewController: MealListViewOutput {
+extension MealListViewController: MealListViewDelegateOutput {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         10
     }

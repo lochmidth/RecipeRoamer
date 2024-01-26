@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol MealListViewOutput: AnyObject {
+protocol MealListViewDelegateOutput: AnyObject {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
@@ -17,7 +17,7 @@ class MealListView: UIView {
     
     //MARK: - Properties
     
-    weak var output: MealListViewOutput?
+    weak var output: MealListViewDelegateOutput?
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
