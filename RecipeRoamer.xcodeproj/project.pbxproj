@@ -9,13 +9,23 @@
 /* Begin PBXBuildFile section */
 		C2C7E3D72B63DE7100BE8374 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E3D62B63DE7100BE8374 /* AppDelegate.swift */; };
 		C2C7E3D92B63DE7100BE8374 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E3D82B63DE7100BE8374 /* SceneDelegate.swift */; };
-		C2C7E3DB2B63DE7100BE8374 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E3DA2B63DE7100BE8374 /* ViewController.swift */; };
-		C2C7E3DE2B63DE7100BE8374 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2C7E3DC2B63DE7100BE8374 /* Main.storyboard */; };
 		C2C7E3E02B63DE7300BE8374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2C7E3DF2B63DE7300BE8374 /* Assets.xcassets */; };
 		C2C7E3E32B63DE7300BE8374 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2C7E3E12B63DE7300BE8374 /* LaunchScreen.storyboard */; };
 		C2C7E3EE2B63DE7300BE8374 /* RecipeRoamerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E3ED2B63DE7300BE8374 /* RecipeRoamerTests.swift */; };
 		C2C7E3F82B63DE7300BE8374 /* RecipeRoamerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E3F72B63DE7300BE8374 /* RecipeRoamerUITests.swift */; };
 		C2C7E3FA2B63DE7300BE8374 /* RecipeRoamerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E3F92B63DE7300BE8374 /* RecipeRoamerUITestsLaunchTests.swift */; };
+		C2C7E40B2B63E03500BE8374 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E40A2B63E03500BE8374 /* UIView+Ext.swift */; };
+		C2C7E40E2B63E13A00BE8374 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = C2C7E40D2B63E13A00BE8374 /* Moya */; };
+		C2C7E4112B63E18200BE8374 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C2C7E4102B63E18200BE8374 /* Kingfisher */; };
+		C2C7E4142B63E19E00BE8374 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = C2C7E4132B63E19E00BE8374 /* JGProgressHUD */; };
+		C2C7E4252B63EC0D00BE8374 /* MealListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E4242B63EC0D00BE8374 /* MealListViewController.swift */; };
+		C2C7E4272B63EFA500BE8374 /* MealListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E4262B63EFA500BE8374 /* MealListInteractor.swift */; };
+		C2C7E4292B63EFB000BE8374 /* MealListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E4282B63EFB000BE8374 /* MealListPresenter.swift */; };
+		C2C7E42B2B63F2AB00BE8374 /* Meals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E42A2B63F2AB00BE8374 /* Meals.swift */; };
+		C2C7E42D2B63F2BB00BE8374 /* MealListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E42C2B63F2BB00BE8374 /* MealListRouter.swift */; };
+		C2C7E42F2B63F2C200BE8374 /* MealListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E42E2B63F2C200BE8374 /* MealListBuilder.swift */; };
+		C2C7E4322B63F37900BE8374 /* MealCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E4312B63F37900BE8374 /* MealCollectionViewCell.swift */; };
+		C2C7E4342B6402C900BE8374 /* MealListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E4332B6402C900BE8374 /* MealListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +49,6 @@
 		C2C7E3D32B63DE7100BE8374 /* RecipeRoamer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeRoamer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C7E3D62B63DE7100BE8374 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2C7E3D82B63DE7100BE8374 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C2C7E3DA2B63DE7100BE8374 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C2C7E3DD2B63DE7100BE8374 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C2C7E3DF2B63DE7300BE8374 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2C7E3E22B63DE7300BE8374 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2C7E3E42B63DE7300BE8374 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +57,15 @@
 		C2C7E3F32B63DE7300BE8374 /* RecipeRoamerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipeRoamerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C7E3F72B63DE7300BE8374 /* RecipeRoamerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRoamerUITests.swift; sourceTree = "<group>"; };
 		C2C7E3F92B63DE7300BE8374 /* RecipeRoamerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRoamerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C2C7E40A2B63E03500BE8374 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		C2C7E4242B63EC0D00BE8374 /* MealListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListViewController.swift; sourceTree = "<group>"; };
+		C2C7E4262B63EFA500BE8374 /* MealListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListInteractor.swift; sourceTree = "<group>"; };
+		C2C7E4282B63EFB000BE8374 /* MealListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListPresenter.swift; sourceTree = "<group>"; };
+		C2C7E42A2B63F2AB00BE8374 /* Meals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meals.swift; sourceTree = "<group>"; };
+		C2C7E42C2B63F2BB00BE8374 /* MealListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListRouter.swift; sourceTree = "<group>"; };
+		C2C7E42E2B63F2C200BE8374 /* MealListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListBuilder.swift; sourceTree = "<group>"; };
+		C2C7E4312B63F37900BE8374 /* MealCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCollectionViewCell.swift; sourceTree = "<group>"; };
+		C2C7E4332B6402C900BE8374 /* MealListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2C7E4112B63E18200BE8374 /* Kingfisher in Frameworks */,
+				C2C7E4142B63E19E00BE8374 /* JGProgressHUD in Frameworks */,
+				C2C7E40E2B63E13A00BE8374 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,13 +119,10 @@
 		C2C7E3D52B63DE7100BE8374 /* RecipeRoamer */ = {
 			isa = PBXGroup;
 			children = (
-				C2C7E3D62B63DE7100BE8374 /* AppDelegate.swift */,
-				C2C7E3D82B63DE7100BE8374 /* SceneDelegate.swift */,
-				C2C7E3DA2B63DE7100BE8374 /* ViewController.swift */,
-				C2C7E3DC2B63DE7100BE8374 /* Main.storyboard */,
-				C2C7E3DF2B63DE7300BE8374 /* Assets.xcassets */,
-				C2C7E3E12B63DE7300BE8374 /* LaunchScreen.storyboard */,
-				C2C7E3E42B63DE7300BE8374 /* Info.plist */,
+				C2C7E4062B63DF7B00BE8374 /* App */,
+				C2C7E4152B63E1FE00BE8374 /* Modules */,
+				C2C7E4072B63DF8500BE8374 /* Recources */,
+				C2C7E4082B63DFB700BE8374 /* Supportings */,
 			);
 			path = RecipeRoamer;
 			sourceTree = "<group>";
@@ -127,6 +144,168 @@
 			path = RecipeRoamerUITests;
 			sourceTree = "<group>";
 		};
+		C2C7E4062B63DF7B00BE8374 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E3D62B63DE7100BE8374 /* AppDelegate.swift */,
+				C2C7E3D82B63DE7100BE8374 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C2C7E4072B63DF8500BE8374 /* Recources */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E3DF2B63DE7300BE8374 /* Assets.xcassets */,
+				C2C7E3E12B63DE7300BE8374 /* LaunchScreen.storyboard */,
+			);
+			path = Recources;
+			sourceTree = "<group>";
+		};
+		C2C7E4082B63DFB700BE8374 /* Supportings */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E4092B63DFCA00BE8374 /* Extensions */,
+				C2C7E3E42B63DE7300BE8374 /* Info.plist */,
+			);
+			path = Supportings;
+			sourceTree = "<group>";
+		};
+		C2C7E4092B63DFCA00BE8374 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E40A2B63E03500BE8374 /* UIView+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C2C7E4152B63E1FE00BE8374 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E4172B63E20600BE8374 /* MealList */,
+				C2C7E4162B63E20400BE8374 /* MealRecipe */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		C2C7E4162B63E20400BE8374 /* MealRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E4232B63E39300BE8374 /* View */,
+				C2C7E4222B63E39200BE8374 /* Interactor */,
+				C2C7E4212B63E39100BE8374 /* Presenter */,
+				C2C7E4202B63E39000BE8374 /* Entity */,
+				C2C7E41F2B63E38F00BE8374 /* Builder */,
+			);
+			path = MealRecipe;
+			sourceTree = "<group>";
+		};
+		C2C7E4172B63E20600BE8374 /* MealList */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E41E2B63E25D00BE8374 /* View */,
+				C2C7E41D2B63E25C00BE8374 /* Interactor */,
+				C2C7E41C2B63E25900BE8374 /* Presenter */,
+				C2C7E41B2B63E25700BE8374 /* Entity */,
+				C2C7E41A2B63E25400BE8374 /* Router */,
+				C2C7E4182B63E24D00BE8374 /* Builder */,
+			);
+			path = MealList;
+			sourceTree = "<group>";
+		};
+		C2C7E4182B63E24D00BE8374 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E42E2B63F2C200BE8374 /* MealListBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		C2C7E41A2B63E25400BE8374 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E42C2B63F2BB00BE8374 /* MealListRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		C2C7E41B2B63E25700BE8374 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E42A2B63F2AB00BE8374 /* Meals.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		C2C7E41C2B63E25900BE8374 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E4282B63EFB000BE8374 /* MealListPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		C2C7E41D2B63E25C00BE8374 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E4262B63EFA500BE8374 /* MealListInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		C2C7E41E2B63E25D00BE8374 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E4332B6402C900BE8374 /* MealListView.swift */,
+				C2C7E4242B63EC0D00BE8374 /* MealListViewController.swift */,
+				C2C7E4302B63F36500BE8374 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C2C7E41F2B63E38F00BE8374 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		C2C7E4202B63E39000BE8374 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		C2C7E4212B63E39100BE8374 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		C2C7E4222B63E39200BE8374 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		C2C7E4232B63E39300BE8374 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C2C7E4302B63F36500BE8374 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C2C7E4312B63F37900BE8374 /* MealCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +322,11 @@
 			dependencies = (
 			);
 			name = RecipeRoamer;
+			packageProductDependencies = (
+				C2C7E40D2B63E13A00BE8374 /* Moya */,
+				C2C7E4102B63E18200BE8374 /* Kingfisher */,
+				C2C7E4132B63E19E00BE8374 /* JGProgressHUD */,
+			);
 			productName = RecipeRoamer;
 			productReference = C2C7E3D32B63DE7100BE8374 /* RecipeRoamer.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +399,11 @@
 				Base,
 			);
 			mainGroup = C2C7E3CA2B63DE7100BE8374;
+			packageReferences = (
+				C2C7E40C2B63E13A00BE8374 /* XCRemoteSwiftPackageReference "Moya" */,
+				C2C7E40F2B63E18200BE8374 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C2C7E4122B63E19E00BE8374 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+			);
 			productRefGroup = C2C7E3D42B63DE7100BE8374 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,7 +422,6 @@
 			files = (
 				C2C7E3E32B63DE7300BE8374 /* LaunchScreen.storyboard in Resources */,
 				C2C7E3E02B63DE7300BE8374 /* Assets.xcassets in Resources */,
-				C2C7E3DE2B63DE7100BE8374 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +446,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2C7E3DB2B63DE7100BE8374 /* ViewController.swift in Sources */,
+				C2C7E40B2B63E03500BE8374 /* UIView+Ext.swift in Sources */,
+				C2C7E4252B63EC0D00BE8374 /* MealListViewController.swift in Sources */,
+				C2C7E4272B63EFA500BE8374 /* MealListInteractor.swift in Sources */,
+				C2C7E42F2B63F2C200BE8374 /* MealListBuilder.swift in Sources */,
+				C2C7E42D2B63F2BB00BE8374 /* MealListRouter.swift in Sources */,
+				C2C7E4322B63F37900BE8374 /* MealCollectionViewCell.swift in Sources */,
 				C2C7E3D72B63DE7100BE8374 /* AppDelegate.swift in Sources */,
+				C2C7E4342B6402C900BE8374 /* MealListView.swift in Sources */,
 				C2C7E3D92B63DE7100BE8374 /* SceneDelegate.swift in Sources */,
+				C2C7E42B2B63F2AB00BE8374 /* Meals.swift in Sources */,
+				C2C7E4292B63EFB000BE8374 /* MealListPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +493,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C2C7E3DC2B63DE7100BE8374 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C2C7E3DD2B63DE7100BE8374 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C2C7E3E12B63DE7300BE8374 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -444,12 +632,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6Y92LH56N8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RecipeRoamer/Info.plist;
+				INFOPLIST_FILE = RecipeRoamer/Supportings/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,12 +660,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6Y92LH56N8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RecipeRoamer/Info.plist;
+				INFOPLIST_FILE = RecipeRoamer/Supportings/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -607,6 +795,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C2C7E40C2B63E13A00BE8374 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+		C2C7E40F2B63E18200BE8374 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.2;
+			};
+		};
+		C2C7E4122B63E19E00BE8374 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C2C7E40D2B63E13A00BE8374 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2C7E40C2B63E13A00BE8374 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		C2C7E4102B63E18200BE8374 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2C7E40F2B63E18200BE8374 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		C2C7E4132B63E19E00BE8374 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2C7E4122B63E19E00BE8374 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C2C7E3CB2B63DE7100BE8374 /* Project object */;
 }
