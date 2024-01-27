@@ -7,19 +7,11 @@
 
 import UIKit
 
-protocol MealListViewDelegateOutput: AnyObject {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-}
-
 class MealListView: UIView {
     
     //MARK: - Properties
     
-    weak var output: MealListViewDelegateOutput?
-    
-    private let collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: 170, height: 180)
@@ -29,7 +21,7 @@ class MealListView: UIView {
         return cv
     }()
     
-    private let searchBar: UISearchBar = {
+    let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "Search for recipes"
         searchBar.barStyle = .default
@@ -43,7 +35,6 @@ class MealListView: UIView {
         super.init(frame: frame)
         
         createSubviews()
-        configureCollectionView()
     }
     
     required init?(coder: NSCoder) {
@@ -60,28 +51,5 @@ class MealListView: UIView {
         collectionView.anchor(top: searchBar.bottomAnchor, left: leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: rightAnchor,
                               paddingTop: 16, paddingLeft: 12, paddingRight: 12)
     }
-    
-    private func configureCollectionView() {
-        collectionView.dataSource = self
-        collectionView.delegate = self
-    }
 }
 
-//MARK: - UICollectionViewDelegate/DataSource
-
-extension MealListView: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let output = output else { return 0 }
-        return output.collectionView(collectionView, numberOfItemsInSection: section)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let output = output else { return UICollectionViewCell() }
-        return output.collectionView(collectionView, cellForItemAt: indexPath)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let output = output else { return }
-        return output.collectionView(collectionView, didSelectItemAt: indexPath)
-    }
-}

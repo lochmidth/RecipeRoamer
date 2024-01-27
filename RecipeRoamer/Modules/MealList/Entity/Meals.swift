@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol MealsProtocol: AnyObject {
+    
+}
+
 struct Meals {
     
 }

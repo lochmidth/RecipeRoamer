@@ -7,16 +7,17 @@
 
 import UIKit
 
-protocol MealListViewInput: AnyObject {
-    
-}
-
 protocol MealListViewOutput: AnyObject {
-    
+    func viewDidLoad()
+    func didReachEndOfPage()
+    func didSelectItem(at index: Int)
+    func queryTextDidChange(_ query: String)
 }
 
 final class MealListViewController: UIViewController {
     //MARK: - Properties
+    
+    var presenter: MealListViewOutput!
     
     let mealListView = MealListView()
     
@@ -26,21 +27,27 @@ final class MealListViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationBar()
+//        presenter.viewDidLoad()
     }
     
     override func loadView() {
-        mealListView.output = self
+//        mealListView.delegate = self
+        mealListView.collectionView.delegate = self
+        mealListView.collectionView.dataSource = self
+        mealListView.searchBar.delegate = self
         view = mealListView
     }
     
     //MARK: - Helpers
     
+    //FIXME: Presentere taşı
     private func configureNavigationBar() {
         navigationItem.title = "Recipe Roamer"
     }
 }
 
-extension MealListViewController: MealListViewDelegateOutput {
+extension MealListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         10
     }
@@ -52,9 +59,22 @@ extension MealListViewController: MealListViewDelegateOutput {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("DEBUG: \(indexPath.row). cell is clicked")
+//        presenter.didSelectItem(at: indexPath.item)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print("DEBUG: End of page, no more meal. Handle Load more meals")
+//        presenter.didReachEndOfPage()
     }
 }
 
-#Preview(traits: .defaultLayout, body: {
-    UINavigationController(rootViewController: MealListViewController())
-})
+extension MealListViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        presenter.queryTextDidChange(searchText)
+    }
+}
+
+extension MealListViewController: MealListViewInput {
+    
+}
