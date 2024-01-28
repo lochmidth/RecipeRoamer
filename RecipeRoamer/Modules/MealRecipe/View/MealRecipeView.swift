@@ -17,6 +17,7 @@ class MealRecipeView: UIView {
         tv.backgroundColor = .clear
         tv.separatorStyle = .singleLine
         tv.separatorColor = .darkGray
+        tv.allowsSelection = false
         return tv
     }()
     

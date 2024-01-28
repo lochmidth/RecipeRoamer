@@ -60,6 +60,8 @@ extension MealListViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("DEBUG: \(indexPath.row). cell is clicked")
 //        presenter.didSelectItem(at: indexPath.item)
+        let recipe = MealRecipeViewController()
+        navigationController?.pushViewController(recipe, animated: true)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
