@@ -48,12 +48,13 @@ extension MealRecipeViewController: UITableViewDelegate, UITableViewDataSource {
             case 0:
                 // Meal Name Cell
                 content.text = "Beef Mechado"
+                content.prefersSideBySideTextAndSecondaryText = true
                 content.secondaryText = "Stew, Warming"
                 content.image = UIImage(systemName: "fork.knife")?.withTintColor(.black, renderingMode: .alwaysOriginal)
                 
             case 1:
                 // Ingredients Cell
-                content.text = "3 gloves Garlic\n1 sliced Onion\n2 lbs Beef\n 8 ounces Tomato Puree\n1 cup Water\n 3 tps Olive oil\n1 slice Lemon\n1 large Potatoes\n1/4 cup Soy Souce\n1/2 tps Black Pepper\n2 Bay Leaves\nTo Taste Salt"
+                content.text = "3 gloves Garlic\n1 sliced Onion\n2 lbs Beef\n8 ounces Tomato Puree\n1 cup Water\n3 tps Olive oil\n1 slice Lemon\n1 large Potatoes\n1/4 cup Soy Souce\n1/2 tps Black Pepper\n2 Bay Leaves\nTo Taste Salt"
                 content.image = UIImage(systemName: "list.bullet")?.withTintColor(.black, renderingMode: .alwaysOriginal)
             case 2:
                 // Instructions Cell
