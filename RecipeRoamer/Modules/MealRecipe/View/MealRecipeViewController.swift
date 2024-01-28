@@ -82,7 +82,3 @@ extension MealRecipeViewController: UITableViewDelegate, UITableViewDataSource {
 extension MealRecipeViewController: MealRecipeViewInput {
     
 }
-
-#Preview(traits: .defaultLayout, body: {
-    UINavigationController(rootViewController: MealRecipeViewController())
-})
