@@ -206,7 +206,6 @@
 				C2C7E4232B63E39300BE8374 /* View */,
 				C2C7E4222B63E39200BE8374 /* Interactor */,
 				C2C7E4212B63E39100BE8374 /* Presenter */,
-				C2C7E4202B63E39000BE8374 /* Entity */,
 				C2C7E41F2B63E38F00BE8374 /* Builder */,
 			);
 			path = MealRecipe;
@@ -281,13 +280,6 @@
 				C2C7E43D2B65466100BE8374 /* MealRecipeBuilder.swift */,
 			);
 			path = Builder;
-			sourceTree = "<group>";
-		};
-		C2C7E4202B63E39000BE8374 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
 			sourceTree = "<group>";
 		};
 		C2C7E4212B63E39100BE8374 /* Presenter */ = {
