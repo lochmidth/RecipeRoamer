@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C24796EB2B66CF8A0036EB22 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24796EA2B66CF8A0036EB22 /* NetworkManager.swift */; };
+		C24796EE2B66D03E0036EB22 /* MealAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24796ED2B66D03E0036EB22 /* MealAPI.swift */; };
 		C2C7E3D72B63DE7100BE8374 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E3D62B63DE7100BE8374 /* AppDelegate.swift */; };
 		C2C7E3D92B63DE7100BE8374 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C7E3D82B63DE7100BE8374 /* SceneDelegate.swift */; };
 		C2C7E3E02B63DE7300BE8374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2C7E3DF2B63DE7300BE8374 /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		C24796EA2B66CF8A0036EB22 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C24796ED2B66D03E0036EB22 /* MealAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealAPI.swift; sourceTree = "<group>"; };
 		C2C7E3D32B63DE7100BE8374 /* RecipeRoamer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeRoamer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C7E3D62B63DE7100BE8374 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2C7E3D82B63DE7100BE8374 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,8 +116,17 @@
 			isa = PBXGroup;
 			children = (
 				C24796EA2B66CF8A0036EB22 /* NetworkManager.swift */,
+				C24796EC2B66D0240036EB22 /* Targets */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		C24796EC2B66D0240036EB22 /* Targets */ = {
+			isa = PBXGroup;
+			children = (
+				C24796ED2B66D03E0036EB22 /* MealAPI.swift */,
+			);
+			path = Targets;
 			sourceTree = "<group>";
 		};
 		C2C7E3CA2B63DE7100BE8374 = {
@@ -476,6 +487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C24796EB2B66CF8A0036EB22 /* NetworkManager.swift in Sources */,
+				C24796EE2B66D03E0036EB22 /* MealAPI.swift in Sources */,
 				C2C7E43E2B65466100BE8374 /* MealRecipeBuilder.swift in Sources */,
 				C2C7E4412B6563F700BE8374 /* MealRecipeHeaderView.swift in Sources */,
 				C2C7E40B2B63E03500BE8374 /* UIView+Ext.swift in Sources */,
