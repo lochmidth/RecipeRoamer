@@ -26,24 +26,17 @@ final class MealListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureNavigationBar()
-//        presenter.viewDidLoad()
+        presenter.viewDidLoad()
     }
     
     override func loadView() {
-//        mealListView.delegate = self
         mealListView.collectionView.delegate = self
         mealListView.collectionView.dataSource = self
         mealListView.searchBar.delegate = self
         view = mealListView
     }
     
-    //MARK: - Helpers
     
-    //FIXME: Presentere taşı
-    private func configureNavigationBar() {
-        navigationItem.title = "Recipe Roamer"
-    }
 }
 
 extension MealListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -59,24 +52,26 @@ extension MealListViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("DEBUG: \(indexPath.row). cell is clicked")
-//        presenter.didSelectItem(at: indexPath.item)
+        presenter.didSelectItem(at: indexPath.item)
         let recipe = MealRecipeViewController()
         navigationController?.pushViewController(recipe, animated: true)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         print("DEBUG: End of page, no more meal. Handle Load more meals")
-//        presenter.didReachEndOfPage()
+        presenter.didReachEndOfPage()
     }
 }
 
 extension MealListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        presenter.queryTextDidChange(searchText)
+        presenter.queryTextDidChange(searchText)
     }
 }
 
 extension MealListViewController: MealListViewInput {
-    
+    func configureNavigationBar() {
+        navigationItem.title = "Recipe Roamer"
+    }
 }

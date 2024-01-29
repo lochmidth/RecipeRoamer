@@ -45,4 +45,3 @@ class NetworkManager: NetworkManaging {
         })
     }
 }
-

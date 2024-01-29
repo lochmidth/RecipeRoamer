@@ -29,9 +29,9 @@ extension MealAPI: TargetType {
     var task: Moya.Task {
         switch self {
         case .fetchMeals(let letter):
-            return .requestParameters(parameters: ["f": letter], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["f": letter], encoding: URLEncoding.queryString)
         case .searchMeal(let query):
-            return .requestParameters(parameters: ["s": query], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["s": query], encoding: URLEncoding.queryString)
         }
     }
     
