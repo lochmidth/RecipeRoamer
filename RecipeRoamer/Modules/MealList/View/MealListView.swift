@@ -26,6 +26,7 @@ class MealListView: UIView {
         searchBar.placeholder = "Search for recipes"
         searchBar.barStyle = .default
         searchBar.sizeToFit()
+        searchBar.returnKeyType = .done
         return searchBar
     }()
     

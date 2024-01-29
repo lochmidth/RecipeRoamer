@@ -17,12 +17,13 @@ protocol MealListViewInput: AnyObject {
 }
 
 protocol MealListInteractorInput: AnyObject {
-    func fetchMeals(letter: String) async throws
-    func searchMeal(query: String) async throws
+    func fetchMeals() async
+    func searchMeal(query: String) async
 }
 
 protocol MealListRouterInput: AnyObject {
-    
+    func showRecipe(with meal: MealProtocol)
+    func showAlert(title: String, message: String)
 }
 
 class MealListPresenter {
@@ -31,8 +32,7 @@ class MealListPresenter {
     var interactor: MealListInteractorInput
     var router: MealListRouterInput
     var meals = [MealProtocol]()
-    let fetchList = Array("abcdefghijklmnopqrstuvwxyz")
-    var fetchIndex = 0
+    private var searchDispatchWorkItem: DispatchWorkItem?
     
     init(view: MealListViewInput!, interactor: MealListInteractorInput, router: MealListRouterInput) {
         self.view = view
@@ -40,7 +40,32 @@ class MealListPresenter {
         self.router = router
     }
     
+    private func search(_ query: String) {
+        searchDispatchWorkItem?.cancel()
+        setSearchDispatchWorkItem(with: query)
+        
+        guard let workItem = searchDispatchWorkItem else { return }
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.8,
+                                          execute: workItem)
+    }
     
+    private func setSearchDispatchWorkItem(with text: String) {
+        searchDispatchWorkItem = DispatchWorkItem { [weak self] in
+            guard let self = self else { return }
+            Task { @MainActor in
+                self.view.showLoading()
+                await self.interactor.searchMeal(query: text)
+            }
+        }
+    }
+    
+    private func reload(with meals: [MealProtocol]) {
+        self.meals = meals
+        Task { @MainActor in
+            view.hideLoading()
+            view.reload(with: meals)
+        }
+    }
 }
 
 extension MealListPresenter: MealListViewOutput {
@@ -49,23 +74,15 @@ extension MealListPresenter: MealListViewOutput {
         view.configureNavigationBar()
         view.configureKeyboardDismissal()
         Task {
-            try await interactor.fetchMeals(letter: String(fetchList[fetchIndex]))
-            fetchIndex += 1
-            try await interactor.fetchMeals(letter: String(fetchList[fetchIndex]))
+            await interactor.fetchMeals()
+            await interactor.fetchMeals()
         }
     }
     
     func didReachEndOfPage() {
         view.showLoading()
         Task {
-            fetchIndex += 1
-            if fetchIndex < fetchList.count {
-                do {
-                    try await interactor.fetchMeals(letter: String(fetchList[fetchIndex]))
-                } catch {
-                    print("Error while fetching meals, \(error.localizedDescription)")
-                }
-            }
+            await interactor.fetchMeals()
         }
     }
     
@@ -74,7 +91,7 @@ extension MealListPresenter: MealListViewOutput {
     }
     
     func queryTextDidChange(_ query: String) {
-        
+        search(query)
     }
     
     
@@ -82,18 +99,15 @@ extension MealListPresenter: MealListViewOutput {
 
 extension MealListPresenter: MealListInteractorOutput {
     func interactor(_ interactor: MealListInteractorInput, didReceiveMeals meals: [MealProtocol]) {
-        self.meals = meals
-        Task { @MainActor in
-            view.hideLoading()
-            view.reload(with: meals)
-        }
+        reload(with: meals)
     }
     
-    func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults items: [MealProtocol]) {
-        
+    func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults meals: [MealProtocol]) {
+        reload(with: meals)
     }
     
     func interactor(_ interactor: MealListInteractorInput, didFailWith error: Error) {
-        
+        view.hideLoading()
+        router.showAlert(title: "Oops!", message: error.localizedDescription)
     }
 }

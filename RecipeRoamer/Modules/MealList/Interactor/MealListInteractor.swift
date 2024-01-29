@@ -9,7 +9,7 @@ import Foundation
 
 protocol MealListInteractorOutput: AnyObject {
     func interactor(_ interactor: MealListInteractorInput, didReceiveMeals meals: [MealProtocol])
-    func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults items: [MealProtocol])
+    func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults meals: [MealProtocol])
     func interactor(_ interactor: MealListInteractorInput, didFailWith error: Error)
 }
 
@@ -23,45 +23,72 @@ class MealListInteractor {
     var isFetching = false
     var isSearching = false
     
+    var fetchList = Array("abcdefghijklmnopqrstuvwxyz")
+    var fetchIndex = 0
+    
     init(networkManager: NetworkManaging = NetworkManager()) {
         self.networkManager = networkManager
     }
     
     private func reset() {
         meals.removeAll()
+        fetchIndex = 0
         isFetching = false
         isSearching = false
+    }
+    
+    private func canFetch() -> Bool {
+        return fetchIndex < fetchList.count
     }
     
     
 }
 
 extension MealListInteractor: MealListInteractorInput {
-    func fetchMeals(letter: String) async {
+    func fetchMeals() async {
+        
+        guard canFetch() else {
+            return presenter.interactor(self, didReceiveMeals: self.meals)
+        }
+        
         do {
             isFetching = true
-            let request = MealAPI.fetchMeals(letter: letter)
+            let request = MealAPI.fetchMeals(letter: String(fetchList[fetchIndex]))
             let response: MealListResponse = try await networkManager.request(request)
             isFetching = false
+            fetchIndex += 1
             
             let meals: [Meal] = response.meals.map { .init(from: $0) }
-            if self.meals.isEmpty {
-                self.meals = meals
-                self.presenter.interactor(self, didReceiveMeals: self.meals)
-            } else {
+//            if self.meals.isEmpty {
+//                self.meals = meals
+//                self.presenter.interactor(self, didReceiveMeals: self.meals)
+//            } else {
                 self.meals += meals
                 self.presenter.interactor(self, didReceiveMeals: self.meals)
-            }
+//            }
         } catch {
             presenter.interactor(self, didFailWith: error)
         }
     }
     
-    func searchMeal(query: String) async throws {
-        let request = MealAPI.searchMeal(query: query)
-        let response: MealListResponse = try await networkManager.request(request)
-        let _: [Meal] = response.meals.map { .init(from: $0) }
-        //Handle interactor output
+    func searchMeal(query: String) async {
+        isSearching = true
+        
+        guard !query.isEmpty else {
+            reset()
+            await fetchMeals()
+            await fetchMeals()
+            return
+        }
+        do {
+            let request = MealAPI.searchMeal(query: query)
+            let response: MealListResponse = try await networkManager.request(request)
+            let meals: [Meal] = response.meals.map { .init(from: $0) }
+            self.meals = meals
+            self.presenter.interactor(self, didReceiveQueryResults: self.meals)
+        } catch {
+            presenter.interactor(self, didFailWith: error)
+        }
     }
     
     

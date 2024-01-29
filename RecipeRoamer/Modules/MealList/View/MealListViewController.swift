@@ -69,6 +69,10 @@ extension MealListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter.queryTextDidChange(searchText)
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
 }
 
 extension MealListViewController: MealListViewInput {
