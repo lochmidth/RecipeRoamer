@@ -58,7 +58,9 @@ extension MealListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        presenter.didReachEndOfPage()
+        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
+            presenter.didReachEndOfPage()
+        }
     }
 }
 
@@ -85,5 +87,9 @@ extension MealListViewController: MealListViewInput {
     
     func configureNavigationBar() {
         title = "Recipe Roamer"
+    }
+    
+    func configureKeyboardDismissal() {
+        setupTapGestureforKeyboardDismissal()
     }
 }

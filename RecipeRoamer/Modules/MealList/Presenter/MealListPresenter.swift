@@ -9,6 +9,7 @@ import Foundation
 
 protocol MealListViewInput: AnyObject {
     func configureNavigationBar()
+    func configureKeyboardDismissal()
     func showLoading()
     func hideLoading()
     func reload(with meals: [MealProtocol])
@@ -46,6 +47,7 @@ extension MealListPresenter: MealListViewOutput {
     func viewDidLoad() {
         view.showLoading()
         view.configureNavigationBar()
+        view.configureKeyboardDismissal()
         Task {
             try await interactor.fetchMeals(letter: String(fetchList[fetchIndex]))
             fetchIndex += 1

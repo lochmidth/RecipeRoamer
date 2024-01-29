@@ -10,6 +10,8 @@ import JGProgressHUD
 
 extension UIViewController {
     
+    //MARK: - JGProgressHUD
+    
     static let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Loading"
@@ -24,4 +26,16 @@ extension UIViewController {
             UIViewController.hud.dismiss()
         }
     }
+    
+    //MARK: - Dismiss keyboard on tap
+    
+    func setupTapGestureforKeyboardDismissal() {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+            tapGesture.cancelsTouchesInView = false
+            view.addGestureRecognizer(tapGesture)
+        }
+    
+    @objc func dismissKeyboard() {
+            view.endEditing(true)
+        }
 }
