@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 protocol MealListViewOutput: AnyObject {
     func viewDidLoad()
@@ -21,6 +22,8 @@ final class MealListViewController: UIViewController {
     
     let mealListView = MealListView()
     
+    var meals = [MealProtocol]()
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -35,30 +38,26 @@ final class MealListViewController: UIViewController {
         mealListView.searchBar.delegate = self
         view = mealListView
     }
-    
-    
 }
 
 extension MealListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        return meals.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MealCollectionViewCell
+        cell.configureCell(with: meals[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("DEBUG: \(indexPath.row). cell is clicked")
+        print("DEBUG: Handle Go to Meal:\(meals[indexPath.item])")
         presenter.didSelectItem(at: indexPath.item)
-        let recipe = MealRecipeViewController()
-        navigationController?.pushViewController(recipe, animated: true)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print("DEBUG: End of page, no more meal. Handle Load more meals")
         presenter.didReachEndOfPage()
     }
 }
@@ -71,7 +70,20 @@ extension MealListViewController: UISearchBarDelegate {
 }
 
 extension MealListViewController: MealListViewInput {
+    func reload(with meals: [MealProtocol]) {
+        self.meals = meals
+        self.mealListView.collectionView.reloadData()
+    }
+    
+    func showLoading() {
+        showLoader(true)
+    }
+    
+    func hideLoading() {
+        showLoader(false)
+    }
+    
     func configureNavigationBar() {
-        navigationItem.title = "Recipe Roamer"
+        title = "Recipe Roamer"
     }
 }

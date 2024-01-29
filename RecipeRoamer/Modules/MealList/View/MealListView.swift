@@ -51,5 +51,6 @@ class MealListView: UIView {
         collectionView.anchor(top: searchBar.bottomAnchor, left: leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: rightAnchor,
                               paddingTop: 16, paddingLeft: 12, paddingRight: 12)
     }
+    
 }
 

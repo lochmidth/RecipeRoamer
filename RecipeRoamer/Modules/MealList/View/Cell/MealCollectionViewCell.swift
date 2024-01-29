@@ -30,8 +30,6 @@ class MealCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        configureCell()
     }
     
     required init?(coder: NSCoder) {
@@ -40,19 +38,19 @@ class MealCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Helpers
     
-    private func configureCell() {
+    func configureCell(with meal: MealProtocol) {
         addSubview(mealImageView)
         mealImageView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor)
         
         addSubview(mealLabel)
         mealLabel.anchor(top: mealImageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
         
-        mealLabel.text = "Meal"
+        mealLabel.text = meal.name
         
         let processor = RoundCornerImageProcessor(cornerRadius: Constants.cornerRadius)
         mealImageView.kf.indicatorType = .activity
         mealImageView.kf.setImage(
-            with: URL(string: "https://www.themealdb.com/images/media/meals/cgl60b1683206581.jpg"),
+            with: meal.imageUrl,
             options: [
                 .processor(processor),
                 .scaleFactor(UIScreen.main.scale),
