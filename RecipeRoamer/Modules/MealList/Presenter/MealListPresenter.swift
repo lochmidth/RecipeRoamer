@@ -12,7 +12,7 @@ protocol MealListViewInput: AnyObject {
     func configureKeyboardDismissal()
     func showLoading()
     func hideLoading()
-    func reload(with meals: [MealProtocol])
+    func reload(with meals: [Meal])
     
 }
 
@@ -22,7 +22,7 @@ protocol MealListInteractorInput: AnyObject {
 }
 
 protocol MealListRouterInput: AnyObject {
-    func showRecipe(with meal: MealProtocol)
+    func showRecipe(with meal: Meal)
     func showAlert(title: String, message: String)
 }
 
@@ -31,7 +31,7 @@ class MealListPresenter {
     weak var view: MealListViewInput!
     var interactor: MealListInteractorInput
     var router: MealListRouterInput
-    var meals = [MealProtocol]()
+    var meals = [Meal]()
     private var searchDispatchWorkItem: DispatchWorkItem?
     
     init(view: MealListViewInput!, interactor: MealListInteractorInput, router: MealListRouterInput) {
@@ -59,7 +59,7 @@ class MealListPresenter {
         }
     }
     
-    private func reload(with meals: [MealProtocol]) {
+    private func reload(with meals: [Meal]) {
         self.meals = meals
         Task { @MainActor in
             view.hideLoading()
@@ -75,7 +75,6 @@ extension MealListPresenter: MealListViewOutput {
         view.configureKeyboardDismissal()
         Task {
             await interactor.fetchMeals()
-//            await interactor.fetchMeals()
         }
     }
     
@@ -98,11 +97,11 @@ extension MealListPresenter: MealListViewOutput {
 }
 
 extension MealListPresenter: MealListInteractorOutput {
-    func interactor(_ interactor: MealListInteractorInput, didReceiveMeals meals: [MealProtocol]) {
+    func interactor(_ interactor: MealListInteractorInput, didReceiveMeals meals: [Meal]) {
         reload(with: meals)
     }
     
-    func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults meals: [MealProtocol]) {
+    func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults meals: [Meal]) {
         reload(with: meals)
     }
     

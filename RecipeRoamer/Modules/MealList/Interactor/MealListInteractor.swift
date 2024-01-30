@@ -8,8 +8,8 @@
 import Foundation
 
 protocol MealListInteractorOutput: AnyObject {
-    func interactor(_ interactor: MealListInteractorInput, didReceiveMeals meals: [MealProtocol])
-    func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults meals: [MealProtocol])
+    func interactor(_ interactor: MealListInteractorInput, didReceiveMeals meals: [Meal])
+    func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults meals: [Meal])
     func interactor(_ interactor: MealListInteractorInput, didFailWith error: Error)
 }
 
@@ -19,7 +19,8 @@ class MealListInteractor {
     
     weak var presenter: MealListInteractorOutput!
     let networkManager: NetworkManaging
-    var meals = [MealProtocol]()
+    var meals = [Meal]()
+    
     var isFetching = false
     var isSearching = false
     
@@ -38,18 +39,15 @@ class MealListInteractor {
     }
     
     private func canFetch() -> Bool {
-        return fetchIndex < fetchList.count
+        return fetchIndex < fetchList.count && isFetching == false
     }
-    
 }
 
 extension MealListInteractor: MealListInteractorInput {
     func fetchMeals() async {
-        
         guard canFetch() else {
             return presenter.interactor(self, didReceiveMeals: self.meals)
         }
-        
         do {
             for _ in 0..<2 {
                 isFetching = true
@@ -57,11 +55,9 @@ extension MealListInteractor: MealListInteractorInput {
                 let response: MealListResponse = try await networkManager.request(request)
                 isFetching = false
                 fetchIndex += 1
-                
                 let meals: [Meal] = response.meals.map { .init(from: $0) }
                 self.meals += meals
             }
-            
             self.presenter.interactor(self, didReceiveMeals: self.meals)
         } catch {
             presenter.interactor(self, didFailWith: error)
@@ -70,11 +66,9 @@ extension MealListInteractor: MealListInteractorInput {
     
     func searchMeal(query: String) async {
         isSearching = true
-        
         guard !query.isEmpty else {
             reset()
             await fetchMeals()
-            //            await fetchMeals()
             return
         }
         do {
@@ -87,6 +81,4 @@ extension MealListInteractor: MealListInteractorInput {
             presenter.interactor(self, didFailWith: error)
         }
     }
-    
-    
 }

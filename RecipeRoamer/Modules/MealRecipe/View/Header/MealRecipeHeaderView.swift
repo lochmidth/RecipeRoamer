@@ -34,7 +34,7 @@ class MealRecipeHeaderView: UIView {
     
     //MARK: - Helpers
     
-    func configure(with meal: MealProtocol?) {
+    func configure(with meal: Meal?) {
         addSubview(mealImageView)
         mealImageView.center(inView: self)
         

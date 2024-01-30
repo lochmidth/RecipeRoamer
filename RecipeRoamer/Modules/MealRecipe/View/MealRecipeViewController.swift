@@ -17,10 +17,8 @@ class MealRecipeViewController: UIViewController {
     //MARK: - Properties
     
     var presenter: MealRecipeViewOutput!
-    
     let mealRecipeView = MealRecipeView()
-    
-    var meal: MealProtocol?
+    var meal: Meal?
     
     
     //MARK: - Lifecycle
@@ -39,7 +37,6 @@ class MealRecipeViewController: UIViewController {
 }
 
 extension MealRecipeViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         3
     }
@@ -60,7 +57,7 @@ extension MealRecipeViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MealRecipeViewController: MealRecipeViewInput {
-    func reload(with meal: MealProtocol) {
+    func reload(with meal: Meal) {
         self.meal = meal
         mealRecipeView.tableView.reloadData()
     }

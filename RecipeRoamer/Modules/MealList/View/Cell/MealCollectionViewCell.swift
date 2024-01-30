@@ -38,7 +38,7 @@ class MealCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Helpers
     
-    func configureCell(with meal: MealProtocol) {
+    func configureCell(with meal: Meal) {
         addSubview(mealImageView)
         mealImageView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor)
         

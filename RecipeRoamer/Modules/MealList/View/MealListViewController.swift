@@ -19,10 +19,8 @@ final class MealListViewController: UIViewController {
     //MARK: - Properties
     
     var presenter: MealListViewOutput!
-    
     let mealListView = MealListView()
-    
-    var meals = [MealProtocol]()
+    var meals = [Meal]()
     
     //MARK: - Lifecycle
     
@@ -41,7 +39,6 @@ final class MealListViewController: UIViewController {
 }
 
 extension MealListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return meals.count
     }
@@ -75,7 +72,7 @@ extension MealListViewController: UISearchBarDelegate {
 }
 
 extension MealListViewController: MealListViewInput {
-    func reload(with meals: [MealProtocol]) {
+    func reload(with meals: [Meal]) {
         self.meals = meals
         self.mealListView.collectionView.reloadData()
     }

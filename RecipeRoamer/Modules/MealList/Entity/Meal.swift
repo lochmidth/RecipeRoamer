@@ -7,16 +7,7 @@
 
 import Foundation
 
-protocol MealProtocol {
-    var id: String { get set }
-    var name: String { get set }
-    var tags: String { get set }
-    var imageUrl: URL? { get set }
-    var ingredients: [String] { get set }
-    var instruction: String { get set }
-}
-
-struct Meal: MealProtocol {
+struct Meal {
     var id: String
     var name: String
     var tags: String

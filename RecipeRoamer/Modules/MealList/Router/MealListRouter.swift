@@ -19,7 +19,7 @@ class MealListRouter {
 }
 
 extension MealListRouter: MealListRouterInput {
-    func showRecipe(with meal: MealProtocol) {
+    func showRecipe(with meal: Meal) {
         let mealRecipe = mealRecipeBuilder.start(with: meal)
         navigationController.pushViewController(mealRecipe, animated: true)
     }
