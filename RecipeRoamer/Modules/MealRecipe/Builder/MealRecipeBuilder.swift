@@ -8,8 +8,8 @@
 import UIKit
 
 class MealRecipeBuilder {
-    func start() -> UIViewController {
-        let interactor = MealRecipeInteractor()
+    func start(with meal: MealProtocol) -> UIViewController {
+        let interactor = MealRecipeInteractor(meal: meal)
         let view = MealRecipeViewController()
         
         let presenter = MealRecipePresenter(view: view, interactor: interactor)
