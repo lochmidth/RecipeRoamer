@@ -53,7 +53,6 @@ extension MealListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("DEBUG: Handle Go to Meal:\(meals[indexPath.item])")
         presenter.didSelectItem(at: indexPath.item)
     }
     

@@ -41,7 +41,6 @@ class MealListInteractor {
         return fetchIndex < fetchList.count
     }
     
-    
 }
 
 extension MealListInteractor: MealListInteractorInput {
@@ -52,20 +51,18 @@ extension MealListInteractor: MealListInteractorInput {
         }
         
         do {
-            isFetching = true
-            let request = MealAPI.fetchMeals(letter: String(fetchList[fetchIndex]))
-            let response: MealListResponse = try await networkManager.request(request)
-            isFetching = false
-            fetchIndex += 1
-            
-            let meals: [Meal] = response.meals.map { .init(from: $0) }
-//            if self.meals.isEmpty {
-//                self.meals = meals
-//                self.presenter.interactor(self, didReceiveMeals: self.meals)
-//            } else {
+            for _ in 0..<2 {
+                isFetching = true
+                let request = MealAPI.fetchMeals(letter: String(fetchList[fetchIndex]))
+                let response: MealListResponse = try await networkManager.request(request)
+                isFetching = false
+                fetchIndex += 1
+                
+                let meals: [Meal] = response.meals.map { .init(from: $0) }
                 self.meals += meals
-                self.presenter.interactor(self, didReceiveMeals: self.meals)
-//            }
+            }
+            
+            self.presenter.interactor(self, didReceiveMeals: self.meals)
         } catch {
             presenter.interactor(self, didFailWith: error)
         }
@@ -77,7 +74,7 @@ extension MealListInteractor: MealListInteractorInput {
         guard !query.isEmpty else {
             reset()
             await fetchMeals()
-            await fetchMeals()
+            //            await fetchMeals()
             return
         }
         do {

@@ -75,7 +75,7 @@ extension MealListPresenter: MealListViewOutput {
         view.configureKeyboardDismissal()
         Task {
             await interactor.fetchMeals()
-            await interactor.fetchMeals()
+//            await interactor.fetchMeals()
         }
     }
     
@@ -87,7 +87,7 @@ extension MealListPresenter: MealListViewOutput {
     }
     
     func didSelectItem(at index: Int) {
-        
+        router.showRecipe(with: self.meals[index])
     }
     
     func queryTextDidChange(_ query: String) {

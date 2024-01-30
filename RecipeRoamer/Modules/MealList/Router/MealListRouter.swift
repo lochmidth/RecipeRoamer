@@ -20,7 +20,8 @@ class MealListRouter {
 
 extension MealListRouter: MealListRouterInput {
     func showRecipe(with meal: MealProtocol) {
-        print("DEBUG: Handle show recipe here")
+        let mealRecipe = mealRecipeBuilder.start(with: meal)
+        navigationController.pushViewController(mealRecipe, animated: true)
     }
     
     func showAlert(title: String, message: String) {

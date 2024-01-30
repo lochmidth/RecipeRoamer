@@ -36,6 +36,8 @@ class MealRecipeView: UIView {
     //MARK: - Helpers
     
     private func createSubviews() {
+        backgroundColor = .white
+        
         addSubview(tableView)
         tableView.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: rightAnchor)
     }

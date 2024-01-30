@@ -34,14 +34,14 @@ class MealRecipeHeaderView: UIView {
     
     //MARK: - Helpers
     
-    func configure() {
+    func configure(with meal: MealProtocol?) {
         addSubview(mealImageView)
         mealImageView.center(inView: self)
         
         let processor = RoundCornerImageProcessor(cornerRadius: Constants.cornerRadius)
         mealImageView.kf.indicatorType = .activity
         mealImageView.kf.setImage(
-            with: URL(string: "https://www.themealdb.com/images/media/meals/cgl60b1683206581.jpg"),
+            with: meal?.imageUrl,
             options: [
                 .processor(processor),
                 .scaleFactor(UIScreen.main.scale),
