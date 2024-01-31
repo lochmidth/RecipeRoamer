@@ -8,7 +8,7 @@
 import UIKit
 
 final class MealRecipeBuilder {
-    func start(with meal: Meal) -> UIViewController {
+    func build(with meal: Meal) -> UIViewController {
         let interactor = MealRecipeInteractor(meal: meal)
         let view = MealRecipeViewController()
         

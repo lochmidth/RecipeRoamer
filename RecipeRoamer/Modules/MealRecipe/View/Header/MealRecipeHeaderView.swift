@@ -9,15 +9,10 @@ import UIKit
 import Kingfisher
 
 final class MealRecipeHeaderView: UIView {
-    
-    private enum Constants {
-        static let cornerRadius: CGFloat = 20
-    }
-    
     //MARK: - Properties
     
     private let mealImageView: UIImageView = {
-        let frame = CGRect(x: 0, y: 0, width: 273, height: 277)
+        let frame = Constants.mealImageFrame
         let iv = UIImageView(frame: frame)
         return iv
     }()
@@ -29,7 +24,7 @@ final class MealRecipeHeaderView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constants.fatalError)
     }
     
     //MARK: - Helpers
@@ -48,5 +43,13 @@ final class MealRecipeHeaderView: UIView {
                 .transition(.fade(1)),
                 .cacheOriginalImage
             ])
+    }
+}
+
+extension MealRecipeHeaderView {
+    struct Constants {
+        static let cornerRadius: CGFloat = 20
+        static let mealImageFrame = CGRect(x: 0, y: 0, width: 273, height: 277)
+        static let fatalError = "init(coder:) has not been implemented"
     }
 }

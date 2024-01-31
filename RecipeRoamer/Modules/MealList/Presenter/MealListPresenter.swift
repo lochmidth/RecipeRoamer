@@ -45,7 +45,7 @@ final class MealListPresenter {
         
         guard let workItem = searchDispatchWorkItem else { return }
         Task {
-            try await Task.sleep(nanoseconds: 600000000)
+            try await Task.sleep(nanoseconds: Constants.delayInNanoseconds)
             workItem.perform()
         }
     }
@@ -80,7 +80,7 @@ extension MealListPresenter: MealListViewOutput {
     }
     
     func didReachEndOfPage(_ scrollView: UIScrollView) {
-        let scrollThreshold = 0.4
+        let scrollThreshold = Constants.scrollThreshold
         let scrolledHeight = scrollView.contentOffset.y + scrollView.frame.size.height
         let totalHeight = scrollView.contentSize.height
         let thresholdValue = totalHeight * scrollThreshold
@@ -115,5 +115,12 @@ extension MealListPresenter: MealListInteractorOutput {
     func interactor(_ interactor: MealListInteractorInput, didFailWith error: Error) {
         view.hideLoading()
         router.showAlert(title: "Oops!", message: error.localizedDescription)
+    }
+}
+
+extension MealListPresenter {
+    struct Constants {
+        static let delayInNanoseconds: UInt64 = 600000000
+        static let scrollThreshold = 0.4
     }
 }

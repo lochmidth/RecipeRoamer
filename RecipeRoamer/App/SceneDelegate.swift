@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let nav = mealListBuilder.start()
+        let nav = mealListBuilder.build()
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
     }

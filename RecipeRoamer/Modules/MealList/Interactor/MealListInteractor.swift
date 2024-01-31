@@ -24,8 +24,8 @@ final class MealListInteractor {
     private var isFetching = false
     private var isSearching = false
     
-    private var fetchList = Array("abcdefghijklmnopqrstuvwxyz")
-    private var fetchIndex = 0
+    private var fetchList = Constants.fetchListArray
+    private var fetchIndex = Constants.initialFetchIndex
     
     init(mealService: MealServicing = MealService()) {
         self.mealService = mealService
@@ -33,7 +33,7 @@ final class MealListInteractor {
     
     private func reset() {
         meals.removeAll()
-        fetchIndex = 0
+        fetchIndex = Constants.initialFetchIndex
         isFetching = false
         isSearching = false
     }
@@ -78,5 +78,12 @@ extension MealListInteractor: MealListInteractorInput {
         } catch {
             presenter.interactor(self, didFailWith: error)
         }
+    }
+}
+
+extension MealListInteractor {
+    struct Constants {
+        static let fetchListArray = Array("abcdefghijklmnopqrstuvwxyz")
+        static let initialFetchIndex: Int = 0
     }
 }

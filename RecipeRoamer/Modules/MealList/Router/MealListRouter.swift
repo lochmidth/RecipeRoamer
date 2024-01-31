@@ -20,17 +20,21 @@ final class MealListRouter {
 
 extension MealListRouter: MealListRouterInput {
     func showRecipe(with meal: Meal) {
-        let mealRecipe = mealRecipeBuilder.start(with: meal)
+        let mealRecipe = mealRecipeBuilder.build(with: meal)
         navigationController.pushViewController(mealRecipe, animated: true)
     }
     
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(.init(title: "OK", style: .default))
+        alert.addAction(.init(title: Constants.ok, style: .default))
         Task { @MainActor in
             navigationController.present(alert, animated: true)
         }
     }
-    
-    
+}
+
+extension MealListRouter {
+    struct Constants {
+        static let ok = "OK"
+    }
 }

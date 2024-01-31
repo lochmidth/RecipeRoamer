@@ -10,11 +10,6 @@ import Kingfisher
 import Alamofire
 
 final class MealCollectionViewCell: UICollectionViewCell {
-    
-    private enum Constants {
-        static let cornerRadius: CGFloat = 20
-    }
-    
     //MARK: - Properties
     
     private let mealImageView = UIImageView()
@@ -33,7 +28,7 @@ final class MealCollectionViewCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constants.fatalError)
     }
     
     //MARK: - Helpers
@@ -57,5 +52,12 @@ final class MealCollectionViewCell: UICollectionViewCell {
                 .transition(.fade(1)),
                 .cacheOriginalImage
             ])
+    }
+}
+
+extension MealCollectionViewCell {
+    struct Constants {
+        static let cornerRadius: CGFloat = 20
+        static let fatalError = "init(coder:) has not been implemented"
     }
 }

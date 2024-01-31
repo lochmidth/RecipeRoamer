@@ -17,13 +17,13 @@ final class MealListView: UIView {
         layout.itemSize = CGSize(width: 170, height: 180)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .clear
-        cv.register(MealCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        cv.register(MealCollectionViewCell.self, forCellWithReuseIdentifier: Constants.reuseIdentifier)
         return cv
     }()
     
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.placeholder = "Search for recipes"
+        searchBar.placeholder = Constants.searchBarPlacehodlerString
         searchBar.barStyle = .default
         searchBar.sizeToFit()
         searchBar.returnKeyType = .done
@@ -39,7 +39,7 @@ final class MealListView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constants.fatalError)
     }
     
     private func createSubviews() {
@@ -52,6 +52,13 @@ final class MealListView: UIView {
         collectionView.anchor(top: searchBar.bottomAnchor, left: leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: rightAnchor,
                               paddingTop: 16, paddingLeft: 12, paddingRight: 12)
     }
-    
+}
+
+extension MealListView {
+    struct Constants {
+        static let reuseIdentifier = "MealCollectionViewCell"
+        static let searchBarPlacehodlerString = "Search for recipes"
+        static let fatalError = "init(coder:) has not been implemented"
+    }
 }
 

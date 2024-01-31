@@ -38,7 +38,7 @@ final class MealRecipeViewController: UIViewController {
 
 extension MealRecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        Constants.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,7 +52,7 @@ extension MealRecipeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        250
+        Constants.heightForHeaderInSection
     }
 }
 
@@ -60,5 +60,12 @@ extension MealRecipeViewController: MealRecipeViewInput {
     func reload(with meal: Meal) {
         self.meal = meal
         mealRecipeView.tableView.reloadData()
+    }
+}
+
+extension MealRecipeViewController {
+    struct Constants {
+        static let numberOfRows: Int = 3
+        static let heightForHeaderInSection: CGFloat = 250
     }
 }

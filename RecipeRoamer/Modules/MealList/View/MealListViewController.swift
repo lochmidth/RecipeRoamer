@@ -44,7 +44,7 @@ extension MealListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MealCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.reuseIdentifier, for: indexPath) as! MealCollectionViewCell
         cell.configureCell(with: meals[indexPath.item])
         return cell
     }
@@ -84,10 +84,17 @@ extension MealListViewController: MealListViewInput {
     }
     
     func configureNavigationBar() {
-        title = "Recipe Roamer"
+        title = Constants.title
     }
     
     func configureKeyboardDismissal() {
         setupTapGestureforKeyboardDismissal()
+    }
+}
+
+extension MealListViewController {
+    struct Constants {
+        static let reuseIdentifier = "MealCollectionViewCell"
+        static let title = "Recipe Roamer"
     }
 }
