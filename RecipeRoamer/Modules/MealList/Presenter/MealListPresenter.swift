@@ -13,7 +13,6 @@ protocol MealListViewInput: AnyObject {
     func showLoading()
     func hideLoading()
     func reload(with meals: [Meal])
-    
 }
 
 protocol MealListInteractorInput: AnyObject {
@@ -26,12 +25,12 @@ protocol MealListRouterInput: AnyObject {
     func showAlert(title: String, message: String)
 }
 
-class MealListPresenter {
+final class MealListPresenter {
     
     weak var view: MealListViewInput!
-    var interactor: MealListInteractorInput
-    var router: MealListRouterInput
-    var meals = [Meal]()
+    private var interactor: MealListInteractorInput
+    private var router: MealListRouterInput
+    private var meals = [Meal]()
     private var searchDispatchWorkItem: DispatchWorkItem?
     
     init(view: MealListViewInput!, interactor: MealListInteractorInput, router: MealListRouterInput) {

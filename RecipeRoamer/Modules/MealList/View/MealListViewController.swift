@@ -19,8 +19,8 @@ final class MealListViewController: UIViewController {
     //MARK: - Properties
     
     var presenter: MealListViewOutput!
-    let mealListView = MealListView()
-    var meals = [Meal]()
+    private let mealListView = MealListView()
+    private var meals = [Meal]()
     
     //MARK: - Lifecycle
     

@@ -11,12 +11,12 @@ protocol MealRecipeInteractorOutput: AnyObject {
     func interactor(_ interactor: MealRecipeInteractorInput, didReceiveMeal meal: Meal)
 }
 
-class MealRecipeInteractor {
+final class MealRecipeInteractor {
     
     //MARK: - Properties
     
     weak var presenter: MealRecipeInteractorOutput!
-    let meal : Meal
+    private let meal: Meal
     
     init(meal: Meal) {
         self.meal = meal

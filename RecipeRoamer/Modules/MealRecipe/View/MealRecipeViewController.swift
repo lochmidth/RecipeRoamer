@@ -12,13 +12,13 @@ protocol MealRecipeViewOutput: AnyObject {
     func configureCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 }
 
-class MealRecipeViewController: UIViewController {
+final class MealRecipeViewController: UIViewController {
     
     //MARK: - Properties
     
     var presenter: MealRecipeViewOutput!
-    let mealRecipeView = MealRecipeView()
-    var meal: Meal?
+    private let mealRecipeView = MealRecipeView()
+    private var meal: Meal?
     
     
     //MARK: - Lifecycle

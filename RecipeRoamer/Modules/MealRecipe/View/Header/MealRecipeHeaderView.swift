@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class MealRecipeHeaderView: UIView {
+final class MealRecipeHeaderView: UIView {
     
     private enum Constants {
         static let cornerRadius: CGFloat = 20

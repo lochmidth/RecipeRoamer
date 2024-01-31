@@ -7,11 +7,11 @@
 
 import UIKit
 
-class MealListRouter {
+final class MealListRouter {
     
     var navigationController: UINavigationController!
     
-    let mealRecipeBuilder: MealRecipeBuilder
+    private let mealRecipeBuilder: MealRecipeBuilder
     
     init(mealRecipeBuilder: MealRecipeBuilder = MealRecipeBuilder()) {
         self.mealRecipeBuilder = mealRecipeBuilder

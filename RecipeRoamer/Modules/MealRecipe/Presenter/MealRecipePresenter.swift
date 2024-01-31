@@ -15,13 +15,13 @@ protocol MealRecipeInteractorInput: AnyObject {
     func fetch()
 }
 
-class MealRecipePresenter {
+final class MealRecipePresenter {
     
     //MARK: - Properties
     
     weak var view: MealRecipeViewInput!
     var interactor: MealRecipeInteractorInput
-    var meal: Meal?
+    private var meal: Meal?
     
     //MARK: - Lifecycle
     

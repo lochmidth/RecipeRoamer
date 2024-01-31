@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import Alamofire
 
-class MealCollectionViewCell: UICollectionViewCell {
+final class MealCollectionViewCell: UICollectionViewCell {
     
     private enum Constants {
         static let cornerRadius: CGFloat = 20

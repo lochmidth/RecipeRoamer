@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MealListBuilder {
+final class MealListBuilder {
     
     func start() -> UINavigationController {
         let interactor = MealListInteractor()

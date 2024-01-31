@@ -13,19 +13,19 @@ protocol MealListInteractorOutput: AnyObject {
     func interactor(_ interactor: MealListInteractorInput, didFailWith error: Error)
 }
 
-class MealListInteractor {
+final class MealListInteractor {
     
     //MARK: - Properties
     
     weak var presenter: MealListInteractorOutput!
-    let mealService: MealServicing
-    var meals = [Meal]()
+    private let mealService: MealServicing
+    private var meals = [Meal]()
     
-    var isFetching = false
-    var isSearching = false
+    private var isFetching = false
+    private var isSearching = false
     
-    var fetchList = Array("abcdefghijklmnopqrstuvwxyz")
-    var fetchIndex = 0
+    private var fetchList = Array("abcdefghijklmnopqrstuvwxyz")
+    private var fetchIndex = 0
     
     init(mealService: MealServicing = MealService()) {
         self.mealService = mealService

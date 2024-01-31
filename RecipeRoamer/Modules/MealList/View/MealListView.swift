@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MealListView: UIView {
+final class MealListView: UIView {
     
     //MARK: - Properties
     
