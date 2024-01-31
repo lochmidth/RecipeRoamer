@@ -5,7 +5,7 @@
 //  Created by Alphan Ogün on 26.01.2024.
 //
 
-import Foundation
+import UIKit
 
 protocol MealListViewInput: AnyObject {
     func configureNavigationBar()
@@ -44,8 +44,10 @@ final class MealListPresenter {
         setSearchDispatchWorkItem(with: query)
         
         guard let workItem = searchDispatchWorkItem else { return }
-        DispatchQueue.global().asyncAfter(deadline: .now() + 0.8,
-                                          execute: workItem)
+        Task {
+            try await Task.sleep(nanoseconds: 600000000)
+            workItem.perform()
+        }
     }
     
     private func setSearchDispatchWorkItem(with text: String) {
@@ -77,10 +79,16 @@ extension MealListPresenter: MealListViewOutput {
         }
     }
     
-    func didReachEndOfPage() {
-        view.showLoading()
-        Task {
-            await interactor.fetchMeals()
+    func didReachEndOfPage(_ scrollView: UIScrollView) {
+        let scrollThreshold = 0.4
+        let scrolledHeight = scrollView.contentOffset.y + scrollView.frame.size.height
+        let totalHeight = scrollView.contentSize.height
+        let thresholdValue = totalHeight * scrollThreshold
+        
+        if scrolledHeight >= thresholdValue {
+            Task {
+                await interactor.fetchMeals()
+            }
         }
     }
     

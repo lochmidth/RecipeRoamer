@@ -10,7 +10,7 @@ import JGProgressHUD
 
 protocol MealListViewOutput: AnyObject {
     func viewDidLoad()
-    func didReachEndOfPage()
+    func didReachEndOfPage(_ scrollView: UIScrollView)
     func didSelectItem(at index: Int)
     func queryTextDidChange(_ query: String)
 }
@@ -54,9 +54,7 @@ extension MealListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
-            presenter.didReachEndOfPage()
-        }
+        presenter.didReachEndOfPage(scrollView)
     }
 }
 
