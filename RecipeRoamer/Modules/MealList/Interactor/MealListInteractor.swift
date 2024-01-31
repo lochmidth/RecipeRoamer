@@ -18,7 +18,7 @@ class MealListInteractor {
     //MARK: - Properties
     
     weak var presenter: MealListInteractorOutput!
-    let networkManager: NetworkManaging
+    let mealService: MealServicing
     var meals = [Meal]()
     
     var isFetching = false
@@ -27,8 +27,8 @@ class MealListInteractor {
     var fetchList = Array("abcdefghijklmnopqrstuvwxyz")
     var fetchIndex = 0
     
-    init(networkManager: NetworkManaging = NetworkManager()) {
-        self.networkManager = networkManager
+    init(mealService: MealServicing = MealService()) {
+        self.mealService = mealService
     }
     
     private func reset() {
@@ -51,8 +51,7 @@ extension MealListInteractor: MealListInteractorInput {
         do {
             for _ in 0..<2 {
                 isFetching = true
-                let request = MealAPI.fetchMeals(letter: String(fetchList[fetchIndex]))
-                let response: MealListResponse = try await networkManager.request(request)
+                let response = try await mealService.fetchMeals(by: String(fetchList[fetchIndex]))
                 isFetching = false
                 fetchIndex += 1
                 let meals: [Meal] = response.meals.map { .init(from: $0) }
@@ -72,8 +71,7 @@ extension MealListInteractor: MealListInteractorInput {
             return
         }
         do {
-            let request = MealAPI.searchMeal(query: query)
-            let response: MealListResponse = try await networkManager.request(request)
+            let response = try await mealService.searchMeal(query)
             let meals: [Meal] = response.meals.map { .init(from: $0) }
             self.meals = meals
             self.presenter.interactor(self, didReceiveQueryResults: self.meals)
