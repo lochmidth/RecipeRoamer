@@ -27,9 +27,13 @@ final class MealListInteractor {
     private var fetchList = Constants.fetchListArray
     private var fetchIndex = Constants.initialFetchIndex
     
+    //MARK: - Lifecycle
+    
     init(mealService: MealServicing = MealService()) {
         self.mealService = mealService
     }
+    
+    //MARK: - Helpers
     
     private func reset() {
         meals.removeAll()
@@ -42,6 +46,8 @@ final class MealListInteractor {
         return fetchIndex < fetchList.count && isFetching == false
     }
 }
+
+//MARK: - MealListInteractorInput
 
 extension MealListInteractor: MealListInteractorInput {
     func fetchMeals() async {
@@ -80,6 +86,8 @@ extension MealListInteractor: MealListInteractorInput {
         }
     }
 }
+
+//MARK: - Constants
 
 extension MealListInteractor {
     struct Constants {

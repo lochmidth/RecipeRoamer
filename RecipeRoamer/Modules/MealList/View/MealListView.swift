@@ -54,6 +54,8 @@ final class MealListView: UIView {
     }
 }
 
+//MARK: - Constants
+
 extension MealListView {
     struct Constants {
         static let reuseIdentifier = "MealCollectionViewCell"

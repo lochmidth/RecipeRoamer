@@ -26,6 +26,7 @@ protocol MealListRouterInput: AnyObject {
 }
 
 final class MealListPresenter {
+    //MARK: - Properties
     
     weak var view: MealListViewInput!
     private var interactor: MealListInteractorInput
@@ -33,11 +34,15 @@ final class MealListPresenter {
     private var meals = [Meal]()
     private var searchDispatchWorkItem: DispatchWorkItem?
     
+    //MARK: - Lifecycle
+    
     init(view: MealListViewInput!, interactor: MealListInteractorInput, router: MealListRouterInput) {
         self.view = view
         self.interactor = interactor
         self.router = router
     }
+    
+    //MARK: - Helpers
     
     private func search(_ query: String) {
         searchDispatchWorkItem?.cancel()
@@ -68,6 +73,8 @@ final class MealListPresenter {
         }
     }
 }
+
+//MARK: - MealListViewOutput
 
 extension MealListPresenter: MealListViewOutput {
     func viewDidLoad() {
@@ -103,6 +110,8 @@ extension MealListPresenter: MealListViewOutput {
     
 }
 
+//MARK: - MealListInteractorOutput
+
 extension MealListPresenter: MealListInteractorOutput {
     func interactor(_ interactor: MealListInteractorInput, didReceiveMeals meals: [Meal]) {
         reload(with: meals)
@@ -117,6 +126,8 @@ extension MealListPresenter: MealListInteractorOutput {
         router.showAlert(title: "Oops!", message: error.localizedDescription)
     }
 }
+
+//MARK: - Constants
 
 extension MealListPresenter {
     struct Constants {

@@ -55,6 +55,8 @@ final class MealCollectionViewCell: UICollectionViewCell {
     }
 }
 
+//MARK: - Constants
+
 extension MealCollectionViewCell {
     struct Constants {
         static let cornerRadius: CGFloat = 20

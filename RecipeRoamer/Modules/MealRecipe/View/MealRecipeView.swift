@@ -13,7 +13,7 @@ final class MealRecipeView: UIView {
     
     let tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .grouped)
-        tv.register(UITableViewCell.self, forCellReuseIdentifier: Constants.reuseIdentifier)
+        tv.register(MealRecipeTableViewCell.self, forCellReuseIdentifier: Constants.reuseIdentifier)
         tv.backgroundColor = .clear
         tv.separatorStyle = .singleLine
         tv.separatorColor = .darkGray
@@ -42,6 +42,8 @@ final class MealRecipeView: UIView {
         tableView.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: rightAnchor)
     }
 }
+
+//MARK: - Constants
 
 extension MealRecipeView {
     struct Constants {

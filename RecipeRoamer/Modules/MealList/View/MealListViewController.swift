@@ -38,6 +38,8 @@ final class MealListViewController: UIViewController {
     }
 }
 
+//MARK: - UICollectionViewDelegate/DataSource
+
 extension MealListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return meals.count
@@ -58,6 +60,8 @@ extension MealListViewController: UICollectionViewDelegate, UICollectionViewData
     }
 }
 
+//MARK: - UISearchBarDelegate
+
 extension MealListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -68,6 +72,8 @@ extension MealListViewController: UISearchBarDelegate {
         view.endEditing(true)
     }
 }
+
+//MARK: - MealListViewInput
 
 extension MealListViewController: MealListViewInput {
     func reload(with meals: [Meal]) {
@@ -91,6 +97,8 @@ extension MealListViewController: MealListViewInput {
         setupTapGestureforKeyboardDismissal()
     }
 }
+
+//MARK: - Constants
 
 extension MealListViewController {
     struct Constants {

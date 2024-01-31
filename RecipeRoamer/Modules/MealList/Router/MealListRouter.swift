@@ -9,14 +9,19 @@ import UIKit
 
 final class MealListRouter {
     
-    var navigationController: UINavigationController!
+    //MARK: - Properties
     
+    var navigationController: UINavigationController!
     private let mealRecipeBuilder: MealRecipeBuilder
+    
+    //MARK: - Lifecycle
     
     init(mealRecipeBuilder: MealRecipeBuilder = MealRecipeBuilder()) {
         self.mealRecipeBuilder = mealRecipeBuilder
     }
 }
+
+//MARK: - MealListRouterInput
 
 extension MealListRouter: MealListRouterInput {
     func showRecipe(with meal: Meal) {

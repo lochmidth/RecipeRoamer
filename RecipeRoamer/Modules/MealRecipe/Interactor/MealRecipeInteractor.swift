@@ -18,10 +18,14 @@ final class MealRecipeInteractor {
     weak var presenter: MealRecipeInteractorOutput!
     private let meal: Meal
     
+    //MARK: - Lifecycle
+    
     init(meal: Meal) {
         self.meal = meal
     }
 }
+
+//MARK: - MealRecipeInteractorInput
 
 extension MealRecipeInteractor: MealRecipeInteractorInput {
     func fetch() {

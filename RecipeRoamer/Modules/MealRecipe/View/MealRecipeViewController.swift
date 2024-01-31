@@ -9,7 +9,7 @@ import UIKit
 
 protocol MealRecipeViewOutput: AnyObject {
     func viewDidLoad()
-    func configureCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+//    func configureCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 }
 
 final class MealRecipeViewController: UIViewController {
@@ -36,13 +36,17 @@ final class MealRecipeViewController: UIViewController {
     }
 }
 
+//MARK: - UITableViewDelegate/DataSource
+
 extension MealRecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         Constants.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        presenter.configureCell(tableView, cellForRowAt: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.reuseIdentifier, for: indexPath) as! MealRecipeTableViewCell
+        cell.contentConfiguration = cell.configureCell(with: self.meal, indexPath: indexPath)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -56,6 +60,8 @@ extension MealRecipeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK: - MealRecipeViewInput
+
 extension MealRecipeViewController: MealRecipeViewInput {
     func reload(with meal: Meal) {
         self.meal = meal
@@ -63,9 +69,12 @@ extension MealRecipeViewController: MealRecipeViewInput {
     }
 }
 
+//MARK: - Constants
+
 extension MealRecipeViewController {
     struct Constants {
         static let numberOfRows: Int = 3
         static let heightForHeaderInSection: CGFloat = 250
+        static let reuseIdentifier = "MealRecipeCell"
     }
 }
