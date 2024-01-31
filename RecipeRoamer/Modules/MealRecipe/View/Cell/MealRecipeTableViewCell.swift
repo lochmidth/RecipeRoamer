@@ -7,6 +7,12 @@
 
 import UIKit
 
+private enum RecipeSection: Int, CaseIterable {
+    case name = 0
+    case ingredients = 1
+    case instruction = 2
+}
+
 final class MealRecipeTableViewCell: UITableViewCell {
     //MARK: - Properties
     
@@ -26,17 +32,18 @@ final class MealRecipeTableViewCell: UITableViewCell {
     
     func configureCell(with meal: Meal?, indexPath: IndexPath) -> UIListContentConfiguration {
         var content = UIListContentConfiguration.valueCell()
+        let section = RecipeSection(rawValue: indexPath.row)
             
-            switch indexPath.row {
-            case 0:
+            switch section {
+            case .name:
                 content.text = meal?.name
                 content.prefersSideBySideTextAndSecondaryText = true
                 content.secondaryText = meal?.tags
                 content.image = UIImage(systemName: Constants.forkKnifeImage)?.withTintColor(.black, renderingMode: .alwaysOriginal)
-            case 1:
+            case .ingredients:
                 content.text = meal?.ingredients.joined(separator: Constants.newLine)
                 content.image = UIImage(systemName: Constants.listImage)?.withTintColor(.black, renderingMode: .alwaysOriginal)
-            case 2:
+            case .instruction:
                 content.text = meal?.instruction
                 content.image = UIImage(systemName: Constants.bookImage)?.withTintColor(.black, renderingMode: .alwaysOriginal)
             default:
