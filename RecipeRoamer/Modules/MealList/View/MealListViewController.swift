@@ -10,7 +10,7 @@ import JGProgressHUD
 
 protocol MealListViewOutput: AnyObject {
     func viewDidLoad()
-    func didReachEndOfPage()
+    func didReachEndOfPage(_ scrollView: UIScrollView)
     func didSelectItem(at index: Int)
     func queryTextDidChange(_ query: String)
 }
@@ -19,10 +19,8 @@ final class MealListViewController: UIViewController {
     //MARK: - Properties
     
     var presenter: MealListViewOutput!
-    
-    let mealListView = MealListView()
-    
-    var meals = [MealProtocol]()
+    private let mealListView = MealListView()
+    private var meals = [Meal]()
     
     //MARK: - Lifecycle
     
@@ -40,14 +38,15 @@ final class MealListViewController: UIViewController {
     }
 }
 
+//MARK: - UICollectionViewDelegate/DataSource
+
 extension MealListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return meals.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MealCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.reuseIdentifier, for: indexPath) as! MealCollectionViewCell
         cell.configureCell(with: meals[indexPath.item])
         return cell
     }
@@ -57,11 +56,11 @@ extension MealListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
-            presenter.didReachEndOfPage()
-        }
+        presenter.didReachEndOfPage(scrollView)
     }
 }
+
+//MARK: - UISearchBarDelegate
 
 extension MealListViewController: UISearchBarDelegate {
     
@@ -74,8 +73,10 @@ extension MealListViewController: UISearchBarDelegate {
     }
 }
 
+//MARK: - MealListViewInput
+
 extension MealListViewController: MealListViewInput {
-    func reload(with meals: [MealProtocol]) {
+    func reload(with meals: [Meal]) {
         self.meals = meals
         self.mealListView.collectionView.reloadData()
     }
@@ -89,10 +90,19 @@ extension MealListViewController: MealListViewInput {
     }
     
     func configureNavigationBar() {
-        title = "Recipe Roamer"
+        title = Constants.title
     }
     
     func configureKeyboardDismissal() {
         setupTapGestureforKeyboardDismissal()
+    }
+}
+
+//MARK: - Constants
+
+extension MealListViewController {
+    struct Constants {
+        static let reuseIdentifier = "MealCollectionViewCell"
+        static let title = "Recipe Roamer"
     }
 }

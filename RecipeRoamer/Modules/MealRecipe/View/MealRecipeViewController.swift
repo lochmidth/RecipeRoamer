@@ -9,18 +9,16 @@ import UIKit
 
 protocol MealRecipeViewOutput: AnyObject {
     func viewDidLoad()
-    func configureCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+//    func configureCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 }
 
-class MealRecipeViewController: UIViewController {
+final class MealRecipeViewController: UIViewController {
     
     //MARK: - Properties
     
     var presenter: MealRecipeViewOutput!
-    
-    let mealRecipeView = MealRecipeView()
-    
-    var meal: MealProtocol?
+    private let mealRecipeView = MealRecipeView()
+    private var meal: Meal?
     
     
     //MARK: - Lifecycle
@@ -38,14 +36,17 @@ class MealRecipeViewController: UIViewController {
     }
 }
 
+//MARK: - UITableViewDelegate/DataSource
+
 extension MealRecipeViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        Constants.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        presenter.configureCell(tableView, cellForRowAt: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.reuseIdentifier, for: indexPath) as! MealRecipeTableViewCell
+        cell.contentConfiguration = cell.configureCell(with: self.meal, indexPath: indexPath)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -55,13 +56,25 @@ extension MealRecipeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        250
+        Constants.heightForHeaderInSection
     }
 }
 
+//MARK: - MealRecipeViewInput
+
 extension MealRecipeViewController: MealRecipeViewInput {
-    func reload(with meal: MealProtocol) {
+    func reload(with meal: Meal) {
         self.meal = meal
         mealRecipeView.tableView.reloadData()
+    }
+}
+
+//MARK: - Constants
+
+extension MealRecipeViewController {
+    struct Constants {
+        static let numberOfRows: Int = 3
+        static let heightForHeaderInSection: CGFloat = 250
+        static let reuseIdentifier = "MealRecipeCell"
     }
 }

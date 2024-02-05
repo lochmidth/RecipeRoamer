@@ -15,11 +15,11 @@ enum MealAPI {
 
 extension MealAPI: TargetType {
     var baseURL: URL {
-        return URL(string: "https://www.themealdb.com/api/json/v1/1")!
+        return URL(string: Constants.baseUrlString)!
     }
     
     var path: String {
-        return "/search.php"
+        return Constants.searchPath
     }
     
     var method: Moya.Method {
@@ -29,13 +29,23 @@ extension MealAPI: TargetType {
     var task: Moya.Task {
         switch self {
         case .fetchMeals(let letter):
-            return .requestParameters(parameters: ["f": letter], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: [Constants.letterParam: letter], encoding: URLEncoding.queryString)
         case .searchMeal(let query):
-            return .requestParameters(parameters: ["s": query], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: [Constants.queryParam: query], encoding: URLEncoding.queryString)
         }
     }
     
     var headers: [String : String]? {
-        return ["Content-type": "application/json"]
+        return Constants.header
+    }
+}
+
+extension MealAPI {
+    struct Constants {
+        static let baseUrlString = "https://www.themealdb.com/api/json/v1/1"
+        static let searchPath = "/search.php"
+        static let header = ["Content-type": "application/json"]
+        static let letterParam = "f"
+        static let queryParam = "s"
     }
 }

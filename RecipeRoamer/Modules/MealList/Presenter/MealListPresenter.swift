@@ -5,15 +5,14 @@
 //  Created by Alphan Ogün on 26.01.2024.
 //
 
-import Foundation
+import UIKit
 
 protocol MealListViewInput: AnyObject {
     func configureNavigationBar()
     func configureKeyboardDismissal()
     func showLoading()
     func hideLoading()
-    func reload(with meals: [MealProtocol])
-    
+    func reload(with meals: [Meal])
 }
 
 protocol MealListInteractorInput: AnyObject {
@@ -22,17 +21,20 @@ protocol MealListInteractorInput: AnyObject {
 }
 
 protocol MealListRouterInput: AnyObject {
-    func showRecipe(with meal: MealProtocol)
+    func showRecipe(with meal: Meal)
     func showAlert(title: String, message: String)
 }
 
-class MealListPresenter {
+final class MealListPresenter {
+    //MARK: - Properties
     
     weak var view: MealListViewInput!
-    var interactor: MealListInteractorInput
-    var router: MealListRouterInput
-    var meals = [MealProtocol]()
+    private var interactor: MealListInteractorInput
+    private var router: MealListRouterInput
+    private var meals = [Meal]()
     private var searchDispatchWorkItem: DispatchWorkItem?
+    
+    //MARK: - Lifecycle
     
     init(view: MealListViewInput!, interactor: MealListInteractorInput, router: MealListRouterInput) {
         self.view = view
@@ -40,13 +42,17 @@ class MealListPresenter {
         self.router = router
     }
     
+    //MARK: - Helpers
+    
     private func search(_ query: String) {
         searchDispatchWorkItem?.cancel()
         setSearchDispatchWorkItem(with: query)
         
         guard let workItem = searchDispatchWorkItem else { return }
-        DispatchQueue.global().asyncAfter(deadline: .now() + 0.8,
-                                          execute: workItem)
+        Task {
+            try await Task.sleep(nanoseconds: Constants.delayInNanoseconds)
+            workItem.perform()
+        }
     }
     
     private func setSearchDispatchWorkItem(with text: String) {
@@ -59,7 +65,7 @@ class MealListPresenter {
         }
     }
     
-    private func reload(with meals: [MealProtocol]) {
+    private func reload(with meals: [Meal]) {
         self.meals = meals
         Task { @MainActor in
             view.hideLoading()
@@ -68,6 +74,8 @@ class MealListPresenter {
     }
 }
 
+//MARK: - MealListViewOutput
+
 extension MealListPresenter: MealListViewOutput {
     func viewDidLoad() {
         view.showLoading()
@@ -75,14 +83,19 @@ extension MealListPresenter: MealListViewOutput {
         view.configureKeyboardDismissal()
         Task {
             await interactor.fetchMeals()
-//            await interactor.fetchMeals()
         }
     }
     
-    func didReachEndOfPage() {
-        view.showLoading()
-        Task {
-            await interactor.fetchMeals()
+    func didReachEndOfPage(_ scrollView: UIScrollView) {
+        let scrollThreshold = Constants.scrollThreshold
+        let scrolledHeight = scrollView.contentOffset.y + scrollView.frame.size.height
+        let totalHeight = scrollView.contentSize.height
+        let thresholdValue = totalHeight * scrollThreshold
+        
+        if scrolledHeight >= thresholdValue {
+            Task {
+                await interactor.fetchMeals()
+            }
         }
     }
     
@@ -97,17 +110,33 @@ extension MealListPresenter: MealListViewOutput {
     
 }
 
+//MARK: - MealListInteractorOutput
+
 extension MealListPresenter: MealListInteractorOutput {
-    func interactor(_ interactor: MealListInteractorInput, didReceiveMeals meals: [MealProtocol]) {
+    func interactor(_ interactor: MealListInteractorInput, didReceiveMeals meals: [Meal]) {
         reload(with: meals)
     }
     
-    func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults meals: [MealProtocol]) {
+    func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults meals: [Meal]) {
         reload(with: meals)
     }
     
     func interactor(_ interactor: MealListInteractorInput, didFailWith error: Error) {
         view.hideLoading()
         router.showAlert(title: "Oops!", message: error.localizedDescription)
+    }
+    
+    func interactor(_ interactor: MealListInteractorInput, didNotReceiveAnyMeals meals: [Meal]) {
+        view.hideLoading()
+        reload(with: meals)
+    }
+}
+
+//MARK: - Constants
+
+extension MealListPresenter {
+    struct Constants {
+        static let delayInNanoseconds: UInt64 = 600000000
+        static let scrollThreshold = 0.4
     }
 }

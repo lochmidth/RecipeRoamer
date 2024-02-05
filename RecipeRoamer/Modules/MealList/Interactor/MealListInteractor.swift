@@ -8,60 +8,62 @@
 import Foundation
 
 protocol MealListInteractorOutput: AnyObject {
-    func interactor(_ interactor: MealListInteractorInput, didReceiveMeals meals: [MealProtocol])
-    func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults meals: [MealProtocol])
+    func interactor(_ interactor: MealListInteractorInput, didReceiveMeals meals: [Meal])
+    func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults meals: [Meal])
     func interactor(_ interactor: MealListInteractorInput, didFailWith error: Error)
+    func interactor(_ interactor: MealListInteractorInput, didNotReceiveAnyMeals meals: [Meal])
 }
 
-class MealListInteractor {
+final class MealListInteractor {
     
     //MARK: - Properties
     
     weak var presenter: MealListInteractorOutput!
-    let networkManager: NetworkManaging
-    var meals = [MealProtocol]()
-    var isFetching = false
-    var isSearching = false
+    private let mealService: MealServicing
+    private var meals = [Meal]()
     
-    var fetchList = Array("abcdefghijklmnopqrstuvwxyz")
-    var fetchIndex = 0
+    private var isFetching = false
+    private var isSearching = false
     
-    init(networkManager: NetworkManaging = NetworkManager()) {
-        self.networkManager = networkManager
+    private var fetchList = Constants.fetchListArray
+    private var fetchIndex = Constants.initialFetchIndex
+    
+    //MARK: - Lifecycle
+    
+    init(mealService: MealServicing = MealService()) {
+        self.mealService = mealService
     }
+    
+    //MARK: - Helpers
     
     private func reset() {
         meals.removeAll()
-        fetchIndex = 0
+        fetchIndex = Constants.initialFetchIndex
         isFetching = false
         isSearching = false
     }
     
     private func canFetch() -> Bool {
-        return fetchIndex < fetchList.count
+        return fetchIndex < fetchList.count && isFetching == false
     }
-    
 }
+
+//MARK: - MealListInteractorInput
 
 extension MealListInteractor: MealListInteractorInput {
     func fetchMeals() async {
-        
         guard canFetch() else {
             return presenter.interactor(self, didReceiveMeals: self.meals)
         }
-        
         do {
             for _ in 0..<2 {
                 isFetching = true
-                let request = MealAPI.fetchMeals(letter: String(fetchList[fetchIndex]))
-                let response: MealListResponse = try await networkManager.request(request)
+                let response = try await mealService.fetchMeals(by: String(fetchList[fetchIndex]))
                 isFetching = false
                 fetchIndex += 1
-                
                 let meals: [Meal] = response.meals.map { .init(from: $0) }
                 self.meals += meals
             }
-            
             self.presenter.interactor(self, didReceiveMeals: self.meals)
         } catch {
             presenter.interactor(self, didFailWith: error)
@@ -70,23 +72,27 @@ extension MealListInteractor: MealListInteractorInput {
     
     func searchMeal(query: String) async {
         isSearching = true
-        
         guard !query.isEmpty else {
             reset()
             await fetchMeals()
-            //            await fetchMeals()
             return
         }
         do {
-            let request = MealAPI.searchMeal(query: query)
-            let response: MealListResponse = try await networkManager.request(request)
+            let response = try await mealService.searchMeal(query)
             let meals: [Meal] = response.meals.map { .init(from: $0) }
             self.meals = meals
             self.presenter.interactor(self, didReceiveQueryResults: self.meals)
         } catch {
-            presenter.interactor(self, didFailWith: error)
+            presenter.interactor(self, didNotReceiveAnyMeals: [Meal]())
         }
     }
-    
-    
+}
+
+//MARK: - Constants
+
+extension MealListInteractor {
+    struct Constants {
+        static let fetchListArray = Array("abcdefghijklmnopqrstuvwxyz")
+        static let initialFetchIndex: Int = 0
+    }
 }

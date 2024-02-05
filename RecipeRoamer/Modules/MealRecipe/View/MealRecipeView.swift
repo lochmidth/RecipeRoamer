@@ -7,13 +7,13 @@
 
 import UIKit
 
-class MealRecipeView: UIView {
+final class MealRecipeView: UIView {
     
     //MARK: - Properties
     
     let tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .grouped)
-        tv.register(UITableViewCell.self, forCellReuseIdentifier: "mealCell")
+        tv.register(MealRecipeTableViewCell.self, forCellReuseIdentifier: Constants.reuseIdentifier)
         tv.backgroundColor = .clear
         tv.separatorStyle = .singleLine
         tv.separatorColor = .darkGray
@@ -30,7 +30,7 @@ class MealRecipeView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constants.fataError)
     }
     
     //MARK: - Helpers
@@ -40,5 +40,14 @@ class MealRecipeView: UIView {
         
         addSubview(tableView)
         tableView.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: rightAnchor)
+    }
+}
+
+//MARK: - Constants
+
+extension MealRecipeView {
+    struct Constants {
+        static let reuseIdentifier = "MealRecipeCell"
+        static let fataError = "init(coder:) has not been implemented"
     }
 }

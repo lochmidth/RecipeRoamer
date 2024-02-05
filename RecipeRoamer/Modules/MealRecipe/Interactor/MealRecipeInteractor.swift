@@ -8,20 +8,24 @@
 import Foundation
 
 protocol MealRecipeInteractorOutput: AnyObject {
-    func interactor(_ interactor: MealRecipeInteractorInput, didReceiveMeal meal: MealProtocol)
+    func interactor(_ interactor: MealRecipeInteractorInput, didReceiveMeal meal: Meal)
 }
 
-class MealRecipeInteractor {
+final class MealRecipeInteractor {
     
     //MARK: - Properties
     
     weak var presenter: MealRecipeInteractorOutput!
-    let meal : MealProtocol
+    private let meal: Meal
     
-    init(meal: MealProtocol) {
+    //MARK: - Lifecycle
+    
+    init(meal: Meal) {
         self.meal = meal
     }
 }
+
+//MARK: - MealRecipeInteractorInput
 
 extension MealRecipeInteractor: MealRecipeInteractorInput {
     func fetch() {
