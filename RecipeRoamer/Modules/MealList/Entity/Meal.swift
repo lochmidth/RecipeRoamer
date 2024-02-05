@@ -18,9 +18,11 @@ struct Meal {
     init(from response: MealResponse) {
         self.id = response.idMeal ?? ""
         self.name = response.strMeal ?? ""
-        self.tags = response.strTags ?? ""
+//        self.tags = response.strTags ?? ""
         self.imageUrl = URL(string: response.strMealThumb ?? "")
         self.instruction = response.strInstructions ?? ""
+        
+        self.tags = response.strTags?.components(separatedBy: ",").prefix(2).joined(separator: ",") ?? ""
         
         self.ingredients = [
                     "\(response.strMeasure1 ?? "") \(response.strIngredient1 ?? "")",

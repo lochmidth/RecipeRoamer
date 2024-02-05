@@ -125,6 +125,11 @@ extension MealListPresenter: MealListInteractorOutput {
         view.hideLoading()
         router.showAlert(title: "Oops!", message: error.localizedDescription)
     }
+    
+    func interactor(_ interactor: MealListInteractorInput, didNotReceiveAnyMeals meals: [Meal]) {
+        view.hideLoading()
+        reload(with: meals)
+    }
 }
 
 //MARK: - Constants

@@ -11,6 +11,7 @@ protocol MealListInteractorOutput: AnyObject {
     func interactor(_ interactor: MealListInteractorInput, didReceiveMeals meals: [Meal])
     func interactor(_ interactor: MealListInteractorInput, didReceiveQueryResults meals: [Meal])
     func interactor(_ interactor: MealListInteractorInput, didFailWith error: Error)
+    func interactor(_ interactor: MealListInteractorInput, didNotReceiveAnyMeals meals: [Meal])
 }
 
 final class MealListInteractor {
@@ -82,7 +83,7 @@ extension MealListInteractor: MealListInteractorInput {
             self.meals = meals
             self.presenter.interactor(self, didReceiveQueryResults: self.meals)
         } catch {
-            presenter.interactor(self, didFailWith: error)
+            presenter.interactor(self, didNotReceiveAnyMeals: [Meal]())
         }
     }
 }
