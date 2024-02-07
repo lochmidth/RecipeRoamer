@@ -20,13 +20,13 @@ final class MealListInteractor {
     
     weak var presenter: MealListInteractorOutput!
     private let mealService: MealServicing
-    private var meals = [Meal]()
+    var meals = [Meal]()
     
     private var isFetching = false
     private var isSearching = false
     
     private var fetchList = Constants.fetchListArray
-    private var fetchIndex = Constants.initialFetchIndex
+    var fetchIndex = Constants.initialFetchIndex
     
     //MARK: - Lifecycle
     
