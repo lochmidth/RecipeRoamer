@@ -15,9 +15,9 @@ protocol MealServicing {
 
 class MealService {
     
-    let networkManager: NetworkManager
+    let networkManager: NetworkManaging
     
-    init(networkManager: NetworkManager = NetworkManager()) {
+    init(networkManager: NetworkManaging = NetworkManager()) {
         self.networkManager = networkManager
     }
 }

@@ -21,7 +21,7 @@ final class MealRecipePresenter {
     
     weak var view: MealRecipeViewInput!
     var interactor: MealRecipeInteractorInput
-    private var meal: Meal?
+    var meal: Meal?
     
     //MARK: - Lifecycle
     

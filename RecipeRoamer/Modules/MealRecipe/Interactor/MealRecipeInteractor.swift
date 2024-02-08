@@ -16,7 +16,7 @@ final class MealRecipeInteractor {
     //MARK: - Properties
     
     weak var presenter: MealRecipeInteractorOutput!
-    private let meal: Meal
+    let meal: Meal
     
     //MARK: - Lifecycle
     

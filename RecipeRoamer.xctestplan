@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "DB99318B-F5A5-4071-866A-79AE3C8D3C53",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:RecipeRoamer.xcodeproj",
+      "identifier" : "C2C7E3D22B63DE7100BE8374",
+      "name" : "RecipeRoamer"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:RecipeRoamer.xcodeproj",
+        "identifier" : "C2C7E3E82B63DE7300BE8374",
+        "name" : "RecipeRoamerTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:RecipeRoamer.xcodeproj",
+        "identifier" : "C2C7E3F22B63DE7300BE8374",
+        "name" : "RecipeRoamerUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

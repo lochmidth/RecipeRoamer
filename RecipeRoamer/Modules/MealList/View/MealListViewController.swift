@@ -20,7 +20,7 @@ final class MealListViewController: UIViewController {
     
     var presenter: MealListViewOutput!
     private let mealListView = MealListView()
-    private var meals = [Meal]()
+    var meals = [Meal]()
     
     //MARK: - Lifecycle
     
@@ -78,7 +78,9 @@ extension MealListViewController: UISearchBarDelegate {
 extension MealListViewController: MealListViewInput {
     func reload(with meals: [Meal]) {
         self.meals = meals
-        self.mealListView.collectionView.reloadData()
+        Task { @MainActor in
+            self.mealListView.collectionView.reloadData()
+        }
     }
     
     func showLoading() {
@@ -86,7 +88,9 @@ extension MealListViewController: MealListViewInput {
     }
     
     func hideLoading() {
-        showLoader(false)
+        Task { @MainActor in
+            showLoader(false)
+        }
     }
     
     func configureNavigationBar() {

@@ -31,7 +31,7 @@ final class MealListPresenter {
     weak var view: MealListViewInput!
     private var interactor: MealListInteractorInput
     private var router: MealListRouterInput
-    private var meals = [Meal]()
+    var meals = [Meal]()
     private var searchDispatchWorkItem: DispatchWorkItem?
     
     //MARK: - Lifecycle
@@ -67,7 +67,7 @@ final class MealListPresenter {
     
     private func reload(with meals: [Meal]) {
         self.meals = meals
-        Task { @MainActor in
+        Task { 
             view.hideLoading()
             view.reload(with: meals)
         }

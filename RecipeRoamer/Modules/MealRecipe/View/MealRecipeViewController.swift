@@ -18,7 +18,7 @@ final class MealRecipeViewController: UIViewController {
     
     var presenter: MealRecipeViewOutput!
     private let mealRecipeView = MealRecipeView()
-    private var meal: Meal?
+    var meal: Meal?
     
     
     //MARK: - Lifecycle
