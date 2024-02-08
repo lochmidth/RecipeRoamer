@@ -18,6 +18,13 @@
 		C23BF4C22B73A47F001BAD32 /* MealListViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BF4C12B73A47F001BAD32 /* MealListViewTests.swift */; };
 		C23BF4C42B73B6A7001BAD32 /* MealListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BF4C32B73B6A7001BAD32 /* MealListPresenterTests.swift */; };
 		C23BF4C62B73D1AC001BAD32 /* MealListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BF4C52B73D1AC001BAD32 /* MealListInteractorTests.swift */; };
+		C23BF4C92B73FF4A001BAD32 /* MealServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BF4C82B73FF4A001BAD32 /* MealServiceTests.swift */; };
+		C23BF4CD2B74040C001BAD32 /* MockMealRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BF4CC2B74040C001BAD32 /* MockMealRecipeView.swift */; };
+		C23BF4CF2B7404F8001BAD32 /* MockMealRecipePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BF4CE2B7404F8001BAD32 /* MockMealRecipePresenter.swift */; };
+		C23BF4D12B740636001BAD32 /* MockMealRecipeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BF4D02B740636001BAD32 /* MockMealRecipeInteractor.swift */; };
+		C23BF4D32B740745001BAD32 /* MealRecipeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BF4D22B740745001BAD32 /* MealRecipeViewTests.swift */; };
+		C23BF4D52B74FE89001BAD32 /* MealRecipePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BF4D42B74FE89001BAD32 /* MealRecipePresenterTests.swift */; };
+		C23BF4D72B750048001BAD32 /* MealRecipeInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BF4D62B750048001BAD32 /* MealRecipeInteractorTests.swift */; };
 		C24796EB2B66CF8A0036EB22 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24796EA2B66CF8A0036EB22 /* NetworkManager.swift */; };
 		C24796EE2B66D03E0036EB22 /* MealAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24796ED2B66D03E0036EB22 /* MealAPI.swift */; };
 		C24796F12B67ADE10036EB22 /* MealListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24796F02B67ADE10036EB22 /* MealListResponse.swift */; };
@@ -80,6 +87,13 @@
 		C23BF4C12B73A47F001BAD32 /* MealListViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListViewTests.swift; sourceTree = "<group>"; };
 		C23BF4C32B73B6A7001BAD32 /* MealListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListPresenterTests.swift; sourceTree = "<group>"; };
 		C23BF4C52B73D1AC001BAD32 /* MealListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListInteractorTests.swift; sourceTree = "<group>"; };
+		C23BF4C82B73FF4A001BAD32 /* MealServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealServiceTests.swift; sourceTree = "<group>"; };
+		C23BF4CC2B74040C001BAD32 /* MockMealRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMealRecipeView.swift; sourceTree = "<group>"; };
+		C23BF4CE2B7404F8001BAD32 /* MockMealRecipePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMealRecipePresenter.swift; sourceTree = "<group>"; };
+		C23BF4D02B740636001BAD32 /* MockMealRecipeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMealRecipeInteractor.swift; sourceTree = "<group>"; };
+		C23BF4D22B740745001BAD32 /* MealRecipeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRecipeViewTests.swift; sourceTree = "<group>"; };
+		C23BF4D42B74FE89001BAD32 /* MealRecipePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRecipePresenterTests.swift; sourceTree = "<group>"; };
+		C23BF4D62B750048001BAD32 /* MealRecipeInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRecipeInteractorTests.swift; sourceTree = "<group>"; };
 		C24796EA2B66CF8A0036EB22 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C24796ED2B66D03E0036EB22 /* MealAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealAPI.swift; sourceTree = "<group>"; };
 		C24796F02B67ADE10036EB22 /* MealListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListResponse.swift; sourceTree = "<group>"; };
@@ -147,7 +161,7 @@
 				C23BF4A82B725150001BAD32 /* API */,
 				C23BF4A42B724FCD001BAD32 /* Models */,
 				C23BF4BC2B73A3BF001BAD32 /* MealList */,
-				C23BF4BD2B73A3C3001BAD32 /* MealDetail */,
+				C23BF4BD2B73A3C3001BAD32 /* MealRecipe */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -197,18 +211,21 @@
 			path = MealList;
 			sourceTree = "<group>";
 		};
-		C23BF4BD2B73A3C3001BAD32 /* MealDetail */ = {
+		C23BF4BD2B73A3C3001BAD32 /* MealRecipe */ = {
 			isa = PBXGroup;
 			children = (
+				C23BF4CC2B74040C001BAD32 /* MockMealRecipeView.swift */,
+				C23BF4CE2B7404F8001BAD32 /* MockMealRecipePresenter.swift */,
+				C23BF4D02B740636001BAD32 /* MockMealRecipeInteractor.swift */,
 			);
-			path = MealDetail;
+			path = MealRecipe;
 			sourceTree = "<group>";
 		};
 		C23BF4BE2B73A3EA001BAD32 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				C23BF4BF2B73A3EF001BAD32 /* MealList */,
-				C23BF4C02B73A3F3001BAD32 /* MealDetail */,
+				C23BF4C02B73A3F3001BAD32 /* MealRecipe */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -223,11 +240,22 @@
 			path = MealList;
 			sourceTree = "<group>";
 		};
-		C23BF4C02B73A3F3001BAD32 /* MealDetail */ = {
+		C23BF4C02B73A3F3001BAD32 /* MealRecipe */ = {
 			isa = PBXGroup;
 			children = (
+				C23BF4D22B740745001BAD32 /* MealRecipeViewTests.swift */,
+				C23BF4D42B74FE89001BAD32 /* MealRecipePresenterTests.swift */,
+				C23BF4D62B750048001BAD32 /* MealRecipeInteractorTests.swift */,
 			);
-			path = MealDetail;
+			path = MealRecipe;
+			sourceTree = "<group>";
+		};
+		C23BF4C72B73FF3C001BAD32 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C23BF4C82B73FF4A001BAD32 /* MealServiceTests.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		C24796E92B66CF250036EB22 /* API */ = {
@@ -309,6 +337,7 @@
 		C2C7E3EC2B63DE7300BE8374 /* RecipeRoamerTests */ = {
 			isa = PBXGroup;
 			children = (
+				C23BF4C72B73FF3C001BAD32 /* Services */,
 				C23BF4BE2B73A3EA001BAD32 /* Modules */,
 				C23BF4A02B724F69001BAD32 /* Mocks */,
 			);
@@ -667,15 +696,22 @@
 			files = (
 				C23BF4C22B73A47F001BAD32 /* MealListViewTests.swift in Sources */,
 				C23BF4C42B73B6A7001BAD32 /* MealListPresenterTests.swift in Sources */,
+				C23BF4CD2B74040C001BAD32 /* MockMealRecipeView.swift in Sources */,
 				C23BF4AE2B7254FD001BAD32 /* MockNetworkManager.swift in Sources */,
 				C23BF4B92B73A2C5001BAD32 /* MockMealListRouter.swift in Sources */,
 				C23BF4B32B739B88001BAD32 /* MockMealListView.swift in Sources */,
 				C23BF4A72B724FE0001BAD32 /* MockMeal.swift in Sources */,
 				C23BF4C62B73D1AC001BAD32 /* MealListInteractorTests.swift in Sources */,
 				C23BF4B02B725595001BAD32 /* MockMealService.swift in Sources */,
+				C23BF4D32B740745001BAD32 /* MealRecipeViewTests.swift in Sources */,
+				C23BF4C92B73FF4A001BAD32 /* MealServiceTests.swift in Sources */,
 				C23BF4AC2B7252C9001BAD32 /* MockMealListResponse.swift in Sources */,
+				C23BF4D52B74FE89001BAD32 /* MealRecipePresenterTests.swift in Sources */,
+				C23BF4D72B750048001BAD32 /* MealRecipeInteractorTests.swift in Sources */,
 				C23BF4B72B73A059001BAD32 /* MockMealListInteractor.swift in Sources */,
 				C23BF4B52B739C68001BAD32 /* MockMealListPresenter.swift in Sources */,
+				C23BF4D12B740636001BAD32 /* MockMealRecipeInteractor.swift in Sources */,
+				C23BF4CF2B7404F8001BAD32 /* MockMealRecipePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
